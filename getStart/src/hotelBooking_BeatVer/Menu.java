@@ -10,6 +10,14 @@ import java.util.Scanner;
 
 
 public class Menu {
+	static String[] condition_yn = {"yes","no"};
+	static String[] condition_num = {"1","2","3","4","5"};
+	static String[] condition_num_menu = {"1","2","3"};
+	static String[] condition_num_menu2 = {"1","2","3","4","5","6"};
+	static String[] condition_country = {"japan","korea","china","singapore"};
+	static String[] condition_num4 = {"1","2","3","4"};
+	static String fileName = "C:\\Users\\anuto\\eclipse-workspace\\getStart\\src\\hotelBooking_BeatVer\\Book1.csv";
+	
 
 
 	public static void main(String[] args) throws IOException, ParseException 
@@ -21,11 +29,6 @@ public class Menu {
 		String country;
 		Booking booking = new Booking();
 		ArrayList<Hotel> selectedHotel = new ArrayList<Hotel>();
-		String[] condition_yn = {"yes","no"};
-		String[] condition_num = {"1","2","3","4","5"};
-		String[] condition_num_menu = {"1","2","3"};
-		String[] condition_num_menu2 = {"1","2","3","4","5","6"};
-		String[] condition_country = {"japan","korea","china","singapore"};
 		
 		
 		
@@ -153,8 +156,8 @@ public class Menu {
 	public static String inputChecker(String[] condition)
 	{
 		String user_input = null;
-		int key = 1;
-		while (key==1)
+		boolean key = true;
+		while (key==true)
 		{
 			Scanner console = new Scanner(System.in); 
 			String box = console.nextLine(); 
@@ -163,7 +166,7 @@ public class Menu {
 				if (box.equalsIgnoreCase(condition[i]))
 				{
 					user_input = box;
-					key=0;
+					key=false;
 					break;
 				}			
 				else if (i == condition.length-1 && !box.equals(condition[i]))
@@ -185,7 +188,7 @@ public class Menu {
 		//initialize
 //		Scanner console = new Scanner(System.in);
 		int userInputInt;
-		String[] condition_num4 = {"1","2","3","4"};
+
 		
 		
 		System.out.println("Listing country...");
@@ -207,10 +210,10 @@ public class Menu {
 	//hopefully delete later
 	static Residence[] loadHotelObject () throws FileNotFoundException
 	{
-		String file_name = "C:\\Users\\anuto\\eclipse-workspace\\getStart\\src\\hotelBooking_BeatVer\\Book1.csv";
+//		String file_name = "C:\\Users\\anuto\\eclipse-workspace\\getStart\\src\\hotelBooking_BeatVer\\Book1.csv";
 		String hotelInfo;
 		Residence[] hotelList = new Residence[getAmountOfHotel()];
-		Scanner scanner = new Scanner(new File(file_name));
+		Scanner scanner = new Scanner(new File(fileName));
 		int count = 0;
 		
 		scanner.useDelimiter("\n"); //separate by line (enter)
@@ -227,9 +230,9 @@ public class Menu {
 	
 	static int getAmountOfHotel() throws FileNotFoundException
 	{
-		String file_name = "C:\\Users\\anuto\\eclipse-workspace\\getStart\\src\\hotelBooking_BeatVer\\Book1.csv";
+//		String file_name = "C:\\Users\\anuto\\eclipse-workspace\\getStart\\src\\hotelBooking_BeatVer\\Book1.csv";
 		int i = 0;
-		Scanner scanner = new Scanner(new File(file_name));
+		Scanner scanner = new Scanner(new File(fileName));
 		scanner.useDelimiter("\n"); //separate by space (enter)
 		
         while(scanner.hasNext())    	
