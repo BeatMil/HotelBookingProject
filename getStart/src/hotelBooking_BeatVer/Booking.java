@@ -2,6 +2,7 @@ package hotelBooking_BeatVer;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.ParseException;
@@ -14,7 +15,7 @@ import java.util.Scanner;
 public class Booking 
 {
 	//variables
-	CSVreader filter = new CSVreader();
+//	CSVreader filter = new CSVreader();
 	Menu menu = new Menu();
 	Hotel hotelInfo;
 	
@@ -24,7 +25,20 @@ public class Booking
 	String checkout_date;
 	int totalPrice;
 	
+	//file location
+	static String file_name = "C:\\Users\\anuto\\eclipse-workspace\\getStart\\src\\hotelBooking_BeatVer\\Book1.csv";
+	static String booking_file ="C:\\Users\\anuto\\git\\HotelBookingProject\\getStart\\booking.txt";
 
+
+	public static void viewBooking() throws FileNotFoundException
+	{
+		Scanner console = new Scanner(new File(booking_file));
+		console.useDelimiter("\n");
+		while(console.hasNext())
+		{
+			System.out.println(console.next());
+		}
+	}
 	
 	public void getCustomerInfo() throws ParseException
 	{
@@ -56,9 +70,6 @@ public class Booking
 			
         	System.out.println(i+1 + ". "+hotelList.get(i));
         }
-		
-		
-		
 		this.hotelInfo = hotelList.get(inputCheckerForArray(hotelList.size()));
 		System.out.println(this.hotelInfo.getName()+" has been chosen.");
 	}
@@ -111,6 +122,7 @@ public class Booking
 	{
 		this.totalPrice = (int) (day * Integer.parseInt(hotelInfo.getPrice()));
 	}
+	
 	public String validateJavaDate()
 	{
 		int key=1;
@@ -143,6 +155,7 @@ public class Booking
 		}
 		return strDate;
 	}
+	
 	public String validateDateDiff(String day) throws ParseException
 	{
 		int key =1;

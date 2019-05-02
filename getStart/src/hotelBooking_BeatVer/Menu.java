@@ -141,7 +141,7 @@ public class Menu {
 			}
 			else if (user_input_string.contentEquals("2"))
 			{
-				CSVreader.viewBooking();
+				Booking.viewBooking();
 			}
 			
 		} while (!user_input_string.contentEquals("3"));
@@ -212,7 +212,8 @@ public class Menu {
 	{
 //		String file_name = "C:\\Users\\anuto\\eclipse-workspace\\getStart\\src\\hotelBooking_BeatVer\\Book1.csv";
 		String hotelInfo;
-		Residence[] hotelList = new Residence[getAmountOfHotel()];
+//		Residence[] hotelList = new Residence[getAmountOfHotel()];
+		Hotel[] hotelList = new Hotel[getAmountOfHotel()];
 		Scanner scanner = new Scanner(new File(fileName));
 		int count = 0;
 		
