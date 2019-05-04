@@ -1,0 +1,9 @@
+/**
+ * 
+ */
+/**
+ * @author Beatdameat
+ *
+ */
+module construcAreaLaptop {
+}
