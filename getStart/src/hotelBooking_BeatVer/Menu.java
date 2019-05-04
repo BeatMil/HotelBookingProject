@@ -17,7 +17,7 @@ public class Menu {
 	static String[] condition_country = {"japan","korea","china","singapore"};
 	static String[] condition_num4 = {"1","2","3","4"};
 	static String fileName = "C:\\Users\\anuto\\eclipse-workspace\\getStart\\src\\hotelBooking_BeatVer\\Book1.csv";
-	
+	//This is commit from laptop
 
 
 	public static void main(String[] args) throws IOException, ParseException 
