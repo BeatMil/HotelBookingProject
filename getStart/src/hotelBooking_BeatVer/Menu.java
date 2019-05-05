@@ -24,7 +24,7 @@ public class Menu {
 	{
 		//initialize
 //		Scanner console = new Scanner(System.in); 
-		Residence[] hotelList = loadHotelObject();
+		Hotel[] hotelList = loadHotelObject();
 		String user_input_string;
 		String country;
 		Booking booking = new Booking();
@@ -45,9 +45,9 @@ public class Menu {
 			{
 				country = countrySelecter(condition_country);
 //				CSVreader.getHotelCountryFilter(country);
-				for (Residence hotel : hotelList)
+				for (Hotel hotel : hotelList)
 				{
-					if (hotel.country.equalsIgnoreCase(country))
+					if (hotel.getCountry().equalsIgnoreCase(country))
 					{
 						selectedHotel.add((Hotel) hotel);
 						System.out.println(hotel);
@@ -72,9 +72,9 @@ public class Menu {
 //							CSVreader.getHotelStarFilter(inputChecker(condition_num),country);
 							String star = inputChecker(condition_num);
 							selectedHotel.clear();
-							for (Residence hotel : hotelList)
+							for (Hotel hotel : hotelList)
 							{
-								if (hotel.country.equalsIgnoreCase(country) && hotel.star.equalsIgnoreCase(star))
+								if (hotel.getCountry().equalsIgnoreCase(country) && hotel.getStar().equalsIgnoreCase(star))
 								{
 								 	System.out.println(hotel);
 									selectedHotel.add((Hotel) hotel);
@@ -87,9 +87,9 @@ public class Menu {
 //							CSVreader.getHotelBreakfastFilter(inputChecker(condition_yn), country);
 							String breakfast = inputChecker(condition_yn);
 							selectedHotel.clear();
-							for (Residence hotel : hotelList)
+							for (Hotel hotel : hotelList)
 							{
-								if (hotel.country.equalsIgnoreCase(country) && hotel.breakfast.equalsIgnoreCase(breakfast))
+								if (hotel.getCountry().equalsIgnoreCase(country) && hotel.getBreakfast().equalsIgnoreCase(breakfast))
 								{
 									System.out.println(hotel);
 									selectedHotel.add((Hotel) hotel);
@@ -101,9 +101,9 @@ public class Menu {
 //							CSVreader.getHotelPoolFiler(inputChecker(condition_yn), country);
 							String pool = inputChecker(condition_yn);
 							selectedHotel.clear();
-							for (Residence hotel : hotelList)
+							for (Hotel hotel : hotelList)
 							{
-								if (hotel.country.equalsIgnoreCase(country) && hotel.breakfast.equalsIgnoreCase(pool))
+								if (hotel.getCountry().equalsIgnoreCase(country) && hotel.getPool().equalsIgnoreCase(pool))
 								{
 									System.out.println(hotel);
 									selectedHotel.add((Hotel) hotel);
@@ -118,9 +118,9 @@ public class Menu {
 							pool = inputChecker(condition_yn);
 							breakfast = inputChecker(condition_yn);
 						  	selectedHotel.clear();
-							for (Residence hotel : hotelList)
+							for (Hotel hotel : hotelList)
 							{
-								if (hotel.country.equalsIgnoreCase(country) && hotel.star.equalsIgnoreCase(star) && hotel.pool.equalsIgnoreCase(pool) && hotel.breakfast.equalsIgnoreCase(breakfast))
+								if (hotel.getCountry().equalsIgnoreCase(country) && hotel.getStar().equalsIgnoreCase(star) && hotel.getPool().equalsIgnoreCase(pool) && hotel.getBreakfast().equalsIgnoreCase(breakfast))
 								{
 									System.out.println(hotel);
 									selectedHotel.add((Hotel) hotel);
@@ -208,7 +208,7 @@ public class Menu {
 
 	
 	//hopefully delete later
-	static Residence[] loadHotelObject () throws FileNotFoundException
+	static Hotel[] loadHotelObject () throws FileNotFoundException
 	{
 //		String file_name = "C:\\Users\\anuto\\eclipse-workspace\\getStart\\src\\hotelBooking_BeatVer\\Book1.csv";
 		String hotelInfo;
