@@ -1,15 +1,28 @@
 package hotelBooking_BeatVer;
 
+import TCB001R.Room;
 
-public class Hotel extends Residence 
+public class Hotel
 {
 
 //	static ArrayList<Hotel> selectedHotel = new ArrayList<Hotel>();
 //	Residence[] hotelList;
+	private String name;
+	private String country;
+	private String star;
+	private String pool;
+	private String breakfast;
+	private String price;
+	Room[] roomList;
 	
-	Hotel(String name, String country, String star, String pool, String breakfast, String price)
+	Hotel(String name, String country, String star, String pool, String breakfast, String price, Room[] room)
 	{
-		super(name,country,star,pool,breakfast, price);
+		this.name = name;
+		this.country = country;
+		this.star = star;
+		this.pool = pool;
+		this.breakfast = breakfast;
+		this.price = price;	
 	}
 	
 	String getName()

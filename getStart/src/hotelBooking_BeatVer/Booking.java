@@ -139,7 +139,7 @@ public class Booking
 				Date javaDate = sdfrmt.parse(strDate);
 				if (javaDate.getTime() < today.getTime())
 				{
-					System.out.println("Error: Booking to the past in invalid.\nPlease try again.");
+					System.out.println("Error: Booking to the past is invalid.\nPlease try again.");
 				}
 				else
 				{

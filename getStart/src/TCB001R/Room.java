@@ -18,9 +18,14 @@ public class Room
 		this.setSize(s);
 	}
 	
-	String getColor()
+	public String getColor()
 	{
 		return this.color;
+	}
+	
+	public void setColor(String color)
+	{
+		this.color = color;
 	}
 
 	public String getSize() 
@@ -33,6 +38,10 @@ public class Room
 		this.size = size;
 	}
 	
+	public String toString()
+	{
+		return this.color+"\n"+this.size;
+	}
 	
 	
 	

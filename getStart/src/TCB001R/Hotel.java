@@ -4,11 +4,12 @@ public class Hotel
 {
 	private String name;
 	private String star;
-	
-	Hotel()
+	private Room[] roomList;
+	Hotel(Room[] roomList)
 	{
 		this.setName("Default Hotel");
 		this.setStar("4");
+		this.roomList = roomList;
 	}
 
 	public String getStar() 
@@ -34,6 +35,15 @@ public class Hotel
 	public String toString()
 	{
 		return "Name: "+this.name+"\n"+
-				"Star: "+this.star;
+				"Star: "+this.star+"\n"+
+				"Room: "+this.roomList.length;
+	}
+
+	public Room[] getRoomList() {
+		return roomList;
+	}
+
+	public void setRoomList(Room[] roomList) {
+		this.roomList = roomList;
 	}
 }

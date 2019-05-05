@@ -13,3 +13,10 @@ Hotel rating  : 5
 check-in date : 05/05/2019
 check-out date: 06/05/2019
 Total price   : 5000
+name          : JAmes OK
+Nipponbashi
+country       : Japan
+Hotel rating  : 3
+check-in date : 06/05/2019
+check-out date: 10/05/2019
+Total price   : 12000
