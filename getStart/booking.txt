@@ -1,0 +1,15 @@
+
+name          : Beat
+Radisson hotel
+country       : China
+Hotel rating  : 4
+check-in date : 03/05/2019
+check-out date: 05/05/2019
+Total price   : 8000
+name          : Beat
+Holiday inn
+country       : China
+Hotel rating  : 5
+check-in date : 05/05/2019
+check-out date: 06/05/2019
+Total price   : 5000

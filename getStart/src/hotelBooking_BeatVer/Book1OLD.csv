@@ -1,0 +1,16 @@
+Name,Country ,Star,Swimming pool,Breakfast
+Hotel JPN a,Japan,5,no,no
+Hotel JPN b ,Japan,5,no,no
+Hotel JPN c,Japan,4,no,yes
+Hotel JPN d,Japan,4,no,yes
+Hotel JPN e,Japan,3,yes,no
+Hotel JPN f,Japan,3,yes,no
+Hotel JPN g,Japan,2,yes,no
+Hotel JPN h,Japan,2,yes,yes
+Hotel JPN i,Japan,1,yes,yes
+Hotel JPN j,Japan,1,yes,yes
+Chika Hotel,Japan,3,no,yes
+Lion Hotel,Singapore,2,yes,no
+Jun Hotel,Korea,5,yes,no
+Xio Hotel,China,5,yes,yes
+Neko Hotel,Japan,4,yes,yes
