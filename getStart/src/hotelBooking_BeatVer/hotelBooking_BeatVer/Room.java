@@ -2,21 +2,27 @@ package hotelBooking_BeatVer;
 
 
 public class Room {
-	String roomname,amenities;
+	
+	String name;
+	
+	
 
 	public Room() 
 	{
-	roomname="none";
-	amenities="none";
+		name = "Default Room";
 	}
-	public Room(String roomname,String amenity)
+	public Room(String roomname)
 	{
-		this.roomname = roomname;
-		this.amenities = amenity;
+		this.name = roomname;
 	}
-	public void setRoom(String room)
+	
+	public String getName()
 	{
-		this.roomname = room;
+		return this.name;
+	}
+	public void setName(String room)
+	{
+		this.name = room;
 	}
 
 
@@ -24,7 +30,7 @@ public class Room {
 
 	public String toString() 
 	{
-		return "Your room is "+roomname+"\nAmenities: "+amenities ;
+		return name;
 	}
 
 }
