@@ -66,6 +66,7 @@ public class Hotel
 		this.roomList = roomList;
 	}
 	
+	
 	public String toString()
 	{
 		return "Country        : "+getCountry()+"\n"+

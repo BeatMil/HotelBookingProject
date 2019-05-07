@@ -67,14 +67,21 @@ public class Booking
 
 		for (int i = 0; i<hotelList.size(); i++) //looping array showing hotel list
         {
-			
         	System.out.println(i+1 + ". "+hotelList.get(i));
         }
 		this.hotelInfo = hotelList.get(inputCheckerForArray(hotelList.size()));
 		System.out.println(this.hotelInfo.getName()+" has been chosen.");
 	}
 	
-	public int inputCheckerForArray(int arraySize)
+	public void chooseRoom()
+	{
+		for (Room room : this.hotelInfo.getRoomList())
+		{
+			System.out.println(room);
+		}
+	}
+	
+ 	public int inputCheckerForArray(int arraySize)
 
 	{
 		Scanner console = new Scanner(System.in);

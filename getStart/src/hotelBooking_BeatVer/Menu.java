@@ -25,7 +25,6 @@ public class Menu {
 		//initialize
 //		Scanner console = new Scanner(System.in); 
 		Hotel[] hotelList = loadHotelObject();
-		
 		String user_input_string;
 		String country;
 		Booking booking = new Booking();
@@ -64,7 +63,8 @@ public class Menu {
 									+  "6. Choose a hotel");
 					user_input_string = inputChecker(condition_num_menu2);
 					
-					switch (user_input_string) {
+					switch (user_input_string) 
+					{
 					  case "1":
 						  	System.out.println("Go back to menu...");
 						  	break;
@@ -131,6 +131,8 @@ public class Menu {
 						  	
 					  case "6":
 						  	booking.chooseHotel(selectedHotel);
+						  									//Choose Room right here.
+						  	booking.chooseRoom();
 						  	booking.getCustomerInfo();
 						  	booking.writeInfoTofile();
 						  	break;
@@ -261,7 +263,8 @@ public class Menu {
         for (Room room : roomList)
         {
             room = new Room();
-            room.setType(type[(int) (Math.random() * type.length - 1)]);
+            room.setType(type[(int) (Math.random() * type.length)]);
+            System.out.println(room);
         }
 
         return roomList;
