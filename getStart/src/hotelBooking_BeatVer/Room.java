@@ -3,34 +3,37 @@ package hotelBooking_BeatVer;
 
 public class Room {
 	
-	String name;
+	String type;
 	
 	
 
 	public Room() 
 	{
-		name = "Default Room";
+		type = "Default Room";
 	}
-	public Room(String roomname)
+	public Room(String roomType)
 	{
-		this.name = roomname;
+		this.type = roomType;
 	}
 	
-	public String getName()
-	{
-		return this.name;
-	}
-	public void setName(String room)
-	{
-		this.name = room;
-	}
+	
 
+	public String getType() 
+	{
+		return type;
+	}
+	
+	public void setType(String type) 
+	{
+		this.type = type;
+	}
+	
 
 
 
 	public String toString() 
 	{
-		return name;
+		return type;
 	}
 
 }

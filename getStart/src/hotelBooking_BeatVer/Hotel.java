@@ -1,7 +1,5 @@
 package hotelBooking_BeatVer;
 
-import TCB001R.Room;
-
 public class Hotel
 {
 
@@ -13,8 +11,10 @@ public class Hotel
 	private String pool;
 	private String breakfast;
 	private String price;
-	Room[] roomList;
+	private Room[] roomList;
 	
+	
+
 	Hotel(String name, String country, String star, String pool, String breakfast, String price, Room[] room)
 	{
 		this.name = name;
@@ -23,6 +23,7 @@ public class Hotel
 		this.pool = pool;
 		this.breakfast = breakfast;
 		this.price = price;	
+		this.roomList = room;
 	}
 	
 	String getName()
@@ -55,6 +56,16 @@ public class Hotel
 		return this.price;
 	}
 	
+	public Room[] getRoomList()
+	{
+		return roomList;
+	}
+
+	public void setRoomList(Room[] roomList) 
+	{
+		this.roomList = roomList;
+	}
+	
 	public String toString()
 	{
 		return "Country        : "+getCountry()+"\n"+
@@ -62,7 +73,8 @@ public class Hotel
 			   "Hotel Star     : "+getStar()+"\n"+
 			   "Hotel Pool     : "+getPool()+"\n"+
 			   "Hotel Breakfast: "+getBreakfast()+"\n"+
-			   "Price          : "+getPrice()+"\n";
+			   "Price          : "+getPrice()+"\n"+
+			   "Room           : "+getRoomList().length+"\n";
 	}
 	
 

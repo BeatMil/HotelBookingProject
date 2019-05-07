@@ -17,7 +17,7 @@ public class Menu {
 	static String[] condition_country = {"japan","korea","china","singapore"};
 	static String[] condition_num4 = {"1","2","3","4"};
 	static String fileName = "C:\\Users\\anuto\\eclipse-workspace\\getStart\\src\\hotelBooking_BeatVer\\Book1.csv";
-	//This is commit from laptop
+	
 
 
 	public static void main(String[] args) throws IOException, ParseException 
@@ -25,6 +25,7 @@ public class Menu {
 		//initialize
 //		Scanner console = new Scanner(System.in); 
 		Hotel[] hotelList = loadHotelObject();
+		
 		String user_input_string;
 		String country;
 		Booking booking = new Booking();
@@ -76,7 +77,7 @@ public class Menu {
 							{
 								if (hotel.getCountry().equalsIgnoreCase(country) && hotel.getStar().equalsIgnoreCase(star))
 								{
-								 	System.out.println(hotel);
+							 	System.out.println(hotel);
 									selectedHotel.add((Hotel) hotel);
 								}
 							}
@@ -222,7 +223,8 @@ public class Menu {
         {   
         	hotelInfo = scanner.next();
     		String[] hotelListButArray = hotelInfo.split(","); //split by comma into array
-    		hotelList[count] = new Hotel(hotelListButArray[0],hotelListButArray[1],hotelListButArray[2],hotelListButArray[3],hotelListButArray[4],hotelListButArray[5]);  
+    		hotelList[count] = new Hotel(hotelListButArray[0],hotelListButArray[1],hotelListButArray[2],
+    				hotelListButArray[3],hotelListButArray[4],hotelListButArray[5], getRandomRoom());  
     		count++;
     	}
         scanner.close();
@@ -247,5 +249,23 @@ public class Menu {
         return i;
 	}
 
+	public static Room[] getRandomRoom()
+	{
+		
+        String[] type = {"Green","Orange","Blue","Red"};
+        
+        
+        int numRoom = (int) (Math.random() * 20 + 1);
+        Room[] roomList = new Room[numRoom];
+        
+        for (Room room : roomList)
+        {
+            room = new Room();
+            room.setType(type[(int) (Math.random() * type.length - 1)]);
+        }
+
+        return roomList;
+	    
+	}
 	
 }
