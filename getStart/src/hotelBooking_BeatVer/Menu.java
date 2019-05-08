@@ -9,7 +9,8 @@ import java.util.Scanner;
 
 
 
-public class Menu {
+public class Menu 
+{
 	static String[] condition_yn = {"yes","no"};
 	static String[] condition_num = {"1","2","3","4","5"};
 	static String[] condition_num_menu = {"1","2","3"};
@@ -29,9 +30,7 @@ public class Menu {
 		String country;
 		Booking booking = new Booking();
 		ArrayList<Hotel> selectedHotel = new ArrayList<Hotel>();
-		
-		
-		
+
 		
 		
 		do //looping menu options
@@ -131,8 +130,7 @@ public class Menu {
 						  	
 					  case "6":
 						  	booking.chooseHotel(selectedHotel);
-						  									//Choose Room right here.
-						  	booking.chooseRoom();
+						  	booking.chooseRoom();					//Choose Room right here
 						  	booking.getCustomerInfo();
 						  	booking.writeInfoTofile();
 						  	break;
@@ -184,7 +182,6 @@ public class Menu {
 	}
 	
 	
-	
 
 	public static String countrySelecter(String[] country)
 	{
@@ -233,6 +230,7 @@ public class Menu {
 		return hotelList;
 	}
 	
+	
 	static int getAmountOfHotel() throws FileNotFoundException
 	{
 //		String file_name = "C:\\Users\\anuto\\eclipse-workspace\\getStart\\src\\hotelBooking_BeatVer\\Book1.csv";
@@ -251,6 +249,7 @@ public class Menu {
         return i;
 	}
 
+	
 	public static Room[] getRandomRoom()
 	{
 		
@@ -260,15 +259,15 @@ public class Menu {
         int numRoom = (int) (Math.random() * 20 + 1);
         Room[] roomList = new Room[numRoom];
         
-        for (Room room : roomList)
+        for (int i = 0; i<numRoom; i++)
         {
-            room = new Room();
-            room.setType(type[(int) (Math.random() * type.length)]);
-            System.out.println(room);
+        	roomList[i] = new Room(type[(int) (Math.random() * type.length)]);
         }
-
+        
+        
         return roomList;
 	    
 	}
+	
 	
 }
