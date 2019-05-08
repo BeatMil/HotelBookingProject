@@ -20,3 +20,10 @@ Hotel rating  : 3
 check-in date : 06/05/2019
 check-out date: 10/05/2019
 Total price   : 12000
+name          : OK James
+Shin hotel
+country       : China
+Hotel rating  : 3
+check-in date : 09/05/2019
+check-out date: 11/05/2019
+Total price   : 6000

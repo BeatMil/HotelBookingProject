@@ -18,7 +18,8 @@ public class Menu
 	static String[] condition_num_menu2 = {"1","2","3","4","5","6"};
 	static String[] condition_country = {"japan","korea","china","singapore"};
 	static String[] condition_num4 = {"1","2","3","4"};
-	static String fileName = "C:\\Users\\anuto\\eclipse-workspace\\getStart\\src\\hotelBooking_BeatVer\\Book1.csv";
+	static String fileCSV = "C:\\Users\\anuto\\eclipse-workspace\\getStart\\src\\hotelBooking_BeatVer\\Book1.csv";
+	static String fileTXT = "C:\\Users\\anuto\\git\\HotelBookingProject\\getStart\\booking.txt";
 	
 
 
@@ -134,6 +135,11 @@ public class Menu
 						  	break;
 						  	
 					  case "6":
+						  	if (selectedHotel.isEmpty())
+						  	{
+						  		System.out.println("Sorry there are no hotel.");
+						  		break;
+						  	}
 						  	booking.chooseHotel(selectedHotel);
 						  	booking.chooseRoom();					
 						  	System.out.println("1. Choose room\n2. Go back");
@@ -158,7 +164,7 @@ public class Menu
 			}
 			else if (user_input_string.contentEquals("2"))
 			{
-				Booking.viewBooking();
+				Booking.viewBooking(fileTXT);
 			}
 			
 		} while (!user_input_string.contentEquals("3"));
@@ -230,7 +236,7 @@ public class Menu
 		String hotelInfo;
 //		Residence[] hotelList = new Residence[getAmountOfHotel()];
 		Hotel[] hotelList = new Hotel[getAmountOfHotel()];
-		Scanner scanner = new Scanner(new File(fileName));
+		Scanner scanner = new Scanner(new File(fileCSV));
 		int count = 0;
 		
 		scanner.useDelimiter("\n"); //separate by line (enter)
@@ -251,7 +257,7 @@ public class Menu
 	{
 //		String file_name = "C:\\Users\\anuto\\eclipse-workspace\\getStart\\src\\hotelBooking_BeatVer\\Book1.csv";
 		int i = 0;
-		Scanner scanner = new Scanner(new File(fileName));
+		Scanner scanner = new Scanner(new File(fileCSV));
 		scanner.useDelimiter("\n"); //separate by space (enter)
 		
         while(scanner.hasNext())    	

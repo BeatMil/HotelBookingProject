@@ -16,23 +16,23 @@ public class Booking
 {
 	//variables
 //	CSVreader filter = new CSVreader();
-	Menu menu = new Menu();
-	Hotel hotelInfo;
+//	Menu menu = new Menu();
+	static Hotel hotelInfo;
 	
 	//also variables
-	String customer_name;
-	String checkin_date;
-	String checkout_date;
-	int totalPrice;
+	static String customer_name;
+	static String checkin_date;
+	static String checkout_date;
+	static int totalPrice;
 	
 	//file location
-	static String file_name = "C:\\Users\\anuto\\eclipse-workspace\\getStart\\src\\hotelBooking_BeatVer\\Book1.csv";
-	static String booking_file ="C:\\Users\\anuto\\git\\HotelBookingProject\\getStart\\booking.txt";
+//	static String file_name = "C:\\Users\\anuto\\eclipse-workspace\\getStart\\src\\hotelBooking_BeatVer\\Book1.csv";
+//	static String booking_file ="C:\\Users\\anuto\\git\\HotelBookingProject\\getStart\\booking.txt";
 
 
-	public static void viewBooking() throws FileNotFoundException
+	public static void viewBooking(String fileName) throws FileNotFoundException
 	{
-		Scanner console = new Scanner(new File(booking_file));
+		Scanner console = new Scanner(new File(fileName));
 		console.useDelimiter("\n");
 		while(console.hasNext())
 		{
@@ -40,25 +40,25 @@ public class Booking
 		}
 	}
 	
-	public void getCustomerInfo() throws ParseException
+	public static void getCustomerInfo() throws ParseException
 	{
 		Scanner console = new Scanner(System.in);
 		
 		// get name checkindate checkoutdate from user
 		System.out.println("Please fill in your information.\n"
 						+  "Name: ");
-		this.customer_name = console.nextLine();
+		customer_name = console.nextLine();
 		System.out.println("Check-in date: e.g. dd/mm/yyyy 20/05/2019");
-		this.checkin_date = validateJavaDate();
+		checkin_date = validateJavaDate();
 		System.out.println("Check-out date: e.g. dd/mm/yyy 23/05/2019");
-		this.checkout_date = validateDateDiff(this.checkin_date);
+		checkout_date = validateDateDiff(checkin_date);
 		
 		//display customer name checkinoutdate
-		System.out.println("Your hotel: " + this.hotelInfo.getName()+"\n"
-						+  "Name: "+this.customer_name+"\n"
-						+  "Check-in date: " + this.checkin_date+"\n"
-						+  "Check-out date: "+this.checkout_date+"\n"
-						+  "Total price   : "+this.totalPrice+" bath\n");
+		System.out.println("Your hotel: " + hotelInfo.getName()+"\n"
+						+  "Name: "+customer_name+"\n"
+						+  "Check-in date: " + checkin_date+"\n"
+						+  "Check-out date: "+checkout_date+"\n"
+						+  "Total price   : "+totalPrice+" bath\n");
 	}
 	
 	public void chooseHotel(ArrayList<Hotel> hotelList)
@@ -69,19 +69,20 @@ public class Booking
         {
         	System.out.println(i+1 + ". "+hotelList.get(i));
         }
-		this.hotelInfo = hotelList.get(inputCheckerForArray(hotelList.size()));
-		System.out.println(this.hotelInfo.getName()+" has been chosen.");
+		Booking.hotelInfo = hotelList.get(inputCheckerForArray(hotelList.size()));
+		System.out.println(Booking.hotelInfo.getName()+" has been chosen.");
 	}
 	
 	public void chooseRoom()
 	{
-		for (Room room : this.hotelInfo.getRoomList())
+		
+		for (Room room : Booking.hotelInfo.getRoomList())
 		{
 			System.out.println(room);
 		}
 	}
 	
- 	public int inputCheckerForArray(int arraySize)
+ 	public static int inputCheckerForArray(int arraySize)
 
 	{
 		Scanner console = new Scanner(System.in);
@@ -102,12 +103,12 @@ public class Booking
 		return userInput;
 	}
 	
-	public void writeInfoTofile() throws IOException
+	public static void writeInfoTofile() throws IOException
 	{
 //		File file = new File("booking.txt"); 
 		FileWriter fstream = new FileWriter("booking.txt",true);
         BufferedWriter out = new BufferedWriter(fstream); //buffer class name out
-        out.append("name          : "+this.customer_name);
+        out.append("name          : "+customer_name);
         out.newLine();
         out.append(hotelInfo.getName());// Writing all customer info
         out.newLine();
@@ -115,22 +116,22 @@ public class Booking
         out.newLine();
         out.append("Hotel rating  : "+hotelInfo.getStar());
         out.newLine();       
-        out.append("check-in date : "+this.checkin_date);
+        out.append("check-in date : "+checkin_date);
         out.newLine();
-        out.append("check-out date: "+this.checkout_date);
+        out.append("check-out date: "+checkout_date);
         out.newLine();
-        out.append("Total price   : "+this.totalPrice);
+        out.append("Total price   : "+totalPrice);
         out.newLine();
         out.close();
-        System.out.println("Writting successful.");
+        System.out.println("Writting successful.\n");
 	}
 
-	public void getTotalPrice(long day)
+	public static void getTotalPrice(long day)
 	{
-		this.totalPrice = (int) (day * Integer.parseInt(hotelInfo.getPrice()));
+		totalPrice = (int) (day * Integer.parseInt(hotelInfo.getPrice()));
 	}
 	
-	public String validateJavaDate()
+	public static String validateJavaDate()
 	{
 		int key=1;
 		String strDate = null;
@@ -163,7 +164,7 @@ public class Booking
 		return strDate;
 	}
 	
-	public String validateDateDiff(String day) throws ParseException
+	public static String validateDateDiff(String day) throws ParseException
 	{
 		int key =1;
 		Scanner console = new Scanner(System.in);
