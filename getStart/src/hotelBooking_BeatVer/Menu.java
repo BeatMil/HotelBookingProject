@@ -11,6 +11,7 @@ import java.util.Scanner;
 
 public class Menu 
 {
+	//user choices for inputChecker
 	static String[] condition_yn = {"yes","no"};
 	static String[] condition_num = {"1","2","3","4","5"};
 	static String[] condition_num_menu = {"1","2","3"};
@@ -18,15 +19,16 @@ public class Menu
 	static String[] condition_num_menu2 = {"1","2","3","4","5","6"};
 	static String[] condition_country = {"japan","korea","china","singapore"};
 	static String[] condition_num4 = {"1","2","3","4"};
+	
+	//Files location
 	static String fileCSV = "C:\\Users\\anuto\\eclipse-workspace\\getStart\\src\\hotelBooking_BeatVer\\Book1.csv";
-	static String fileTXT = "C:\\Users\\anuto\\git\\HotelBookingProject\\getStart\\booking.txt";
+	static String fileTXT = "C:\\Users\\anuto\\Documents\\GitHub\\HotelBookingProject\\getStart\\booking.txt";
 	
 
 
 	public static void main(String[] args) throws IOException, ParseException 
 	{
-		//initialize
-//		Scanner console = new Scanner(System.in); 
+		//initialize variables
 		Hotel[] hotelList = loadHotelObject();
 		String user_input_string;
 		String country;
@@ -45,7 +47,6 @@ public class Menu
 			if (user_input_string.contentEquals("1"))
 			{
 				country = countrySelecter(condition_country);
-//				CSVreader.getHotelCountryFilter(country);
 				for (Hotel hotel : hotelList)
 				{
 					if (hotel.getCountry().equalsIgnoreCase(country))
@@ -56,38 +57,34 @@ public class Menu
 				}
 				do
 				{
-					System.out.println("1. Go back to menu\n"
-									+  "2. Filter with star\n"
-									+  "3. Filter with free breakfast\n"
-									+  "4. Filter with swimming pool\n"
-									+  "5. Filter with all\n"
-									+  "6. Choose a hotel");
+					System.out.println("1. Filter with star\n"
+									+  "2. Filter with free breakfast\n"
+									+  "3. Filter with swimming pool\n"
+									+  "4. Filter with all\n"
+									+  "5. Choose a hotel\n"
+									+  "6. Go back to menu\n");
 					user_input_string = inputChecker(condition_num_menu2);
 					
 					switch (user_input_string) 
 					{
+					  
 					  case "1":
-						  	System.out.println("Go back to menu...");
-						  	break;
-					  case "2":
 							System.out.println("Please specify hotel rating e.g. 1-5:");
-//							CSVreader.getHotelStarFilter(inputChecker(condition_num),country);
 							String star = inputChecker(condition_num);
 							selectedHotel.clear();
 							for (Hotel hotel : hotelList)
 							{
 								if (hotel.getCountry().equalsIgnoreCase(country) && hotel.getStar().equalsIgnoreCase(star))
 								{
-							 	System.out.println(hotel);
+								 	System.out.println(hotel);
 									selectedHotel.add((Hotel) hotel);
 								}
 							}
 							checkIfNoHotel(selectedHotel);
 							break;
 							
-					  case "3":
+					  case "2":
 							System.out.println("Please specify free breakfast e.g. yes,no");
-//							CSVreader.getHotelBreakfastFilter(inputChecker(condition_yn), country);
 							String breakfast = inputChecker(condition_yn);
 							selectedHotel.clear();
 							for (Hotel hotel : hotelList)
@@ -100,9 +97,9 @@ public class Menu
 							}
 							checkIfNoHotel(selectedHotel);
 						  	break;
-					  case "4":
+						  	
+					  case "3":
 							System.out.println("Please specify swimming pool e.g. yes, no");
-//							CSVreader.getHotelPoolFiler(inputChecker(condition_yn), country);
 							String pool = inputChecker(condition_yn);
 							selectedHotel.clear();
 							for (Hotel hotel : hotelList)
@@ -116,9 +113,8 @@ public class Menu
 							checkIfNoHotel(selectedHotel);
 						  	break;
 					
-					  case "5":
+					  case "4":
 						  	System.out.println("Please specify hotel rating, swimming pool and free breakfast e.g. 5 *enter* yes *enter* no *enter*");
-//						  	CSVreader.getHotelAllFilter(inputChecker(condition_num), inputChecker(condition_yn), inputChecker(condition_yn), country);
 							star = inputChecker(condition_num);
 							pool = inputChecker(condition_yn);
 							breakfast = inputChecker(condition_yn);
@@ -134,7 +130,7 @@ public class Menu
 							checkIfNoHotel(selectedHotel);
 						  	break;
 						  	
-					  case "6":
+					  case "5":
 						  	if (selectedHotel.isEmpty())
 						  	{
 						  		System.out.println("Sorry there are no hotel.");
@@ -153,14 +149,17 @@ public class Menu
 						  		System.out.println("Break");
 						  		break;
 						  	}
-						  	booking.getCustomerInfo();
-						  	booking.writeInfoTofile();
+						  	Booking.getCustomerInfo();
+						  	Booking.writeInfoTofile();
+						  	break;
+						  	
+					  case "6":
+						  	System.out.println("Go back to menu");
 						  	break;
 					}
-				}while (!user_input_string.equalsIgnoreCase("1") && !user_input_string.equalsIgnoreCase("6"));
+				}while (!user_input_string.equalsIgnoreCase("5") && !user_input_string.equalsIgnoreCase("6"));
 				
 	
-//				Booking hotel = new Booking(null, null, null);
 			}
 			else if (user_input_string.contentEquals("2"))
 			{

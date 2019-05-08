@@ -1,9 +1,0 @@
-Hotel reserve and booked successfully
-Name: bauy 
-Country: loas 
- arrival date: 12 
-Depart: 14
-booking code:789132749832174837
-please printed and show this when you arrived at the hotel
-------------
-Please enjoy your holiday ^-^

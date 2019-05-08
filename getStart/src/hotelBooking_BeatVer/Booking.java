@@ -120,7 +120,7 @@ public class Booking
         out.newLine();
         out.append("check-out date: "+checkout_date);
         out.newLine();
-        out.append("Total price   : "+totalPrice);
+        out.append("Total price   : "+totalPrice+"\n");
         out.newLine();
         out.close();
         System.out.println("Writting successful.\n");
