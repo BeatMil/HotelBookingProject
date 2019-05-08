@@ -135,7 +135,7 @@ public class Menu
 						  	
 					  case "6":
 						  	booking.chooseHotel(selectedHotel);
-						  	booking.chooseRoom();					//Choose Room right here
+						  	booking.chooseRoom();					
 						  	System.out.println("1. Choose room\n2. Go back");
 						  	user_input_string = inputChecker(condition_num_menu3);
 						  	if(user_input_string.contains("1"))
@@ -269,7 +269,7 @@ public class Menu
 	public static Room[] getRandomRoom()
 	{
 		
-        String[] type = {"Green","Orange","Blue","Red"};
+        String[] roomType = {"Green","Orange","Blue","Red"};
         
         
         int numRoom = (int) (Math.random() * 20 + 1);
@@ -277,7 +277,7 @@ public class Menu
         
         for (int i = 0; i<numRoom; i++)
         {
-        	roomList[i] = new Room(type[(int) (Math.random() * type.length)]);
+        	roomList[i] = new Room(roomType[(int) (Math.random() * roomType.length)]);
         }
         
         
