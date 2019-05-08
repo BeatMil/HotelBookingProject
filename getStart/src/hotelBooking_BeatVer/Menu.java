@@ -14,6 +14,7 @@ public class Menu
 	static String[] condition_yn = {"yes","no"};
 	static String[] condition_num = {"1","2","3","4","5"};
 	static String[] condition_num_menu = {"1","2","3"};
+	static String[] condition_num_menu3 = {"1","2"};
 	static String[] condition_num_menu2 = {"1","2","3","4","5","6"};
 	static String[] condition_country = {"japan","korea","china","singapore"};
 	static String[] condition_num4 = {"1","2","3","4"};
@@ -80,6 +81,7 @@ public class Menu
 									selectedHotel.add((Hotel) hotel);
 								}
 							}
+							checkIfNoHotel(selectedHotel);
 							break;
 							
 					  case "3":
@@ -95,6 +97,7 @@ public class Menu
 									selectedHotel.add((Hotel) hotel);
 								}
 							}
+							checkIfNoHotel(selectedHotel);
 						  	break;
 					  case "4":
 							System.out.println("Please specify swimming pool e.g. yes, no");
@@ -109,6 +112,7 @@ public class Menu
 									selectedHotel.add((Hotel) hotel);
 								}
 							}
+							checkIfNoHotel(selectedHotel);
 						  	break;
 					
 					  case "5":
@@ -126,11 +130,23 @@ public class Menu
 									selectedHotel.add((Hotel) hotel);
 								}
 							}
+							checkIfNoHotel(selectedHotel);
 						  	break;
 						  	
 					  case "6":
 						  	booking.chooseHotel(selectedHotel);
 						  	booking.chooseRoom();					//Choose Room right here
+						  	System.out.println("1. Choose room\n2. Go back");
+						  	user_input_string = inputChecker(condition_num_menu3);
+						  	if(user_input_string.contains("1"))
+						  	{
+						  		System.out.println("No break");
+						  	}
+						  	else
+						  	{
+						  		System.out.println("Break");
+						  		break;
+						  	}
 						  	booking.getCustomerInfo();
 						  	booking.writeInfoTofile();
 						  	break;
@@ -269,5 +285,12 @@ public class Menu
 	    
 	}
 	
+	public static void checkIfNoHotel(ArrayList<Hotel> selectedHotel)
+	{
+		if (selectedHotel.isEmpty())
+		{
+			System.out.println("Sorry, there are no specify hotel available.");
+		}
+	}
 	
 }
