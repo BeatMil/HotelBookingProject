@@ -24,7 +24,11 @@ public class StringFormat {
 		
 		System.out.println(String.format("|%,d|", 6666666));
 		
-
+		System.out.println(String.format("|%10s|     q", "Hello"));
+		System.out.println(String.format("|%10s|     q", "Hell"));
+		System.out.println(String.format("|%10s|     q", "WOOOWEE"));
+		System.out.println(String.format("|%10s|     q", "WOOOWEEEEEE"));
+		System.out.format("|%10s|     q", "WOOOWEEEEEE");
 	}
 
 }

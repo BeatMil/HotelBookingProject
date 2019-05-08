@@ -15,8 +15,6 @@ import java.util.Scanner;
 public class Booking 
 {
 	//variables
-//	CSVreader filter = new CSVreader();
-//	Menu menu = new Menu();
 	static Hotel hotelInfo;
 	
 	//also variables
@@ -25,9 +23,6 @@ public class Booking
 	static String checkout_date;
 	static int totalPrice;
 	
-	//file location
-//	static String file_name = "C:\\Users\\anuto\\eclipse-workspace\\getStart\\src\\hotelBooking_BeatVer\\Book1.csv";
-//	static String booking_file ="C:\\Users\\anuto\\git\\HotelBookingProject\\getStart\\booking.txt";
 
 
 	public static void viewBooking(String fileName) throws FileNotFoundException
@@ -61,7 +56,7 @@ public class Booking
 						+  "Total price   : "+totalPrice+" bath\n");
 	}
 	
-	public void chooseHotel(ArrayList<Hotel> hotelList)
+	public Hotel chooseHotel(ArrayList<Hotel> hotelList)
 	{
 		System.out.println("Please select hotels by numbers");
 
@@ -69,13 +64,15 @@ public class Booking
         {
         	System.out.println(i+1 + ". "+hotelList.get(i));
         }
+		
 		Booking.hotelInfo = hotelList.get(inputCheckerForArray(hotelList.size()));
 		System.out.println(Booking.hotelInfo.getName()+" has been chosen.");
+		
+		return Booking.hotelInfo;
 	}
 	
 	public void chooseRoom()
 	{
-		
 		for (Room room : Booking.hotelInfo.getRoomList())
 		{
 			System.out.println(room);
@@ -105,7 +102,6 @@ public class Booking
 	
 	public static void writeInfoTofile() throws IOException
 	{
-//		File file = new File("booking.txt"); 
 		FileWriter fstream = new FileWriter("booking.txt",true);
         BufferedWriter out = new BufferedWriter(fstream); //buffer class name out
         out.append("name          : "+customer_name);

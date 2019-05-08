@@ -24,8 +24,12 @@ public class Menu
 	static String fileCSV = "C:\\Users\\anuto\\eclipse-workspace\\getStart\\src\\hotelBooking_BeatVer\\Book1.csv";
 	static String fileTXT = "C:\\Users\\anuto\\Documents\\GitHub\\HotelBookingProject\\getStart\\booking.txt";
 	
+	//easy if change needed
+	static String[] roomType = {"Regular","Double size","Small","Connected"};
+	
+	static ArrayList<Hotel> selectedHotelList = new ArrayList<Hotel>();
 
-
+	static Hotel choosenHotel;
 	public static void main(String[] args) throws IOException, ParseException 
 	{
 		//initialize variables
@@ -33,7 +37,7 @@ public class Menu
 		String user_input_string;
 		String country;
 		Booking booking = new Booking();
-		ArrayList<Hotel> selectedHotel = new ArrayList<Hotel>();
+		
 
 		
 		
@@ -51,7 +55,7 @@ public class Menu
 				{
 					if (hotel.getCountry().equalsIgnoreCase(country))
 					{
-						selectedHotel.add((Hotel) hotel);
+						selectedHotelList.add((Hotel) hotel);
 						System.out.println(hotel);
 					}
 				}
@@ -71,46 +75,46 @@ public class Menu
 					  case "1":
 							System.out.println("Please specify hotel rating e.g. 1-5:");
 							String star = inputChecker(condition_num);
-							selectedHotel.clear();
+							selectedHotelList.clear();
 							for (Hotel hotel : hotelList)
 							{
 								if (hotel.getCountry().equalsIgnoreCase(country) && hotel.getStar().equalsIgnoreCase(star))
 								{
 								 	System.out.println(hotel);
-									selectedHotel.add((Hotel) hotel);
+									selectedHotelList.add((Hotel) hotel);
 								}
 							}
-							checkIfNoHotel(selectedHotel);
+							checkIfNoHotel(selectedHotelList);
 							break;
 							
 					  case "2":
 							System.out.println("Please specify free breakfast e.g. yes,no");
 							String breakfast = inputChecker(condition_yn);
-							selectedHotel.clear();
+							selectedHotelList.clear();
 							for (Hotel hotel : hotelList)
 							{
 								if (hotel.getCountry().equalsIgnoreCase(country) && hotel.getBreakfast().equalsIgnoreCase(breakfast))
 								{
 									System.out.println(hotel);
-									selectedHotel.add((Hotel) hotel);
+									selectedHotelList.add((Hotel) hotel);
 								}
 							}
-							checkIfNoHotel(selectedHotel);
+							checkIfNoHotel(selectedHotelList);
 						  	break;
 						  	
 					  case "3":
 							System.out.println("Please specify swimming pool e.g. yes, no");
 							String pool = inputChecker(condition_yn);
-							selectedHotel.clear();
+							selectedHotelList.clear();
 							for (Hotel hotel : hotelList)
 							{
 								if (hotel.getCountry().equalsIgnoreCase(country) && hotel.getPool().equalsIgnoreCase(pool))
 								{
 									System.out.println(hotel);
-									selectedHotel.add((Hotel) hotel);
+									selectedHotelList.add((Hotel) hotel);
 								}
 							}
-							checkIfNoHotel(selectedHotel);
+							checkIfNoHotel(selectedHotelList);
 						  	break;
 					
 					  case "4":
@@ -118,28 +122,31 @@ public class Menu
 							star = inputChecker(condition_num);
 							pool = inputChecker(condition_yn);
 							breakfast = inputChecker(condition_yn);
-						  	selectedHotel.clear();
+						  	selectedHotelList.clear();
 							for (Hotel hotel : hotelList)
 							{
 								if (hotel.getCountry().equalsIgnoreCase(country) && hotel.getStar().equalsIgnoreCase(star) && hotel.getPool().equalsIgnoreCase(pool) && hotel.getBreakfast().equalsIgnoreCase(breakfast))
 								{
 									System.out.println(hotel);
-									selectedHotel.add((Hotel) hotel);
+									selectedHotelList.add((Hotel) hotel);
 								}
 							}
-							checkIfNoHotel(selectedHotel);
+							checkIfNoHotel(selectedHotelList);
 						  	break;
 						  	
 					  case "5":
-						  	if (selectedHotel.isEmpty())
+						  	if (selectedHotelList.isEmpty())
 						  	{
 						  		System.out.println("Sorry there are no hotel.");
 						  		break;
 						  	}
-						  	booking.chooseHotel(selectedHotel);
-						  	booking.chooseRoom();					
+						  	
+						  	choosenHotel = booking.chooseHotel(selectedHotelList); 
+//						  	booking.chooseRoom();
+						  	printRoom();
 						  	System.out.println("1. Choose room\n2. Go back");
 						  	user_input_string = inputChecker(condition_num_menu3);
+						  	
 						  	if(user_input_string.contains("1"))
 						  	{
 						  		System.out.println("No break");
@@ -149,6 +156,7 @@ public class Menu
 						  		System.out.println("Break");
 						  		break;
 						  	}
+						  	
 						  	Booking.getCustomerInfo();
 						  	Booking.writeInfoTofile();
 						  	break;
@@ -273,10 +281,6 @@ public class Menu
 	
 	public static Room[] getRandomRoom()
 	{
-		
-        String[] roomType = {"Green","Orange","Blue","Red"};
-        
-        
         int numRoom = (int) (Math.random() * 20 + 1);
         Room[] roomList = new Room[numRoom];
         
@@ -284,12 +288,37 @@ public class Menu
         {
         	roomList[i] = new Room(roomType[(int) (Math.random() * roomType.length)]);
         }
-        
-        
+
         return roomList;
-	    
 	}
-	
+
+	public static void printRoom()
+	{
+		int[] numRoomType = new int[roomType.length];
+		int key = 0;
+		
+		
+		for (String s : roomType)
+		{
+			for (int i = 0; i < choosenHotel.getRoomList().length ; i++)
+			{
+				if (choosenHotel.getRoomList()[i].getType().equalsIgnoreCase(s))
+				{
+					numRoomType[key] += 1;
+				}
+			}
+			key ++;
+		}
+		
+		for (int i = 0; i < roomType.length; i++)
+		{
+//			System.out.println(roomType[i] + " room: " + numRoomType[i] + " availavble");
+			System.out.println(String.format("|%12s room:  %s available", roomType[i], numRoomType[i]));
+		}
+		
+		
+		
+	}
 	public static void checkIfNoHotel(ArrayList<Hotel> selectedHotel)
 	{
 		if (selectedHotel.isEmpty())
