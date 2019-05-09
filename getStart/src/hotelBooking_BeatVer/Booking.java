@@ -29,9 +29,17 @@ public class Booking
 	{
 		Scanner console = new Scanner(new File(fileName));
 		console.useDelimiter("\n");
-		while(console.hasNext())
+		if (!console.hasNext())
 		{
-			System.out.println(console.next());
+			System.out.println("Sorry, there is no data.");
+		}
+		else 
+		{
+			while(console.hasNext())
+			{
+				System.out.println(console.next());
+			
+			}
 		}
 	}
 	

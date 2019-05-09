@@ -25,7 +25,7 @@ public class Menu
 	static String fileTXT = "C:\\Users\\anuto\\Documents\\GitHub\\HotelBookingProject\\getStart\\booking.txt";
 	
 	//easy if change needed
-	static String[] roomType = {"Regular","Double size","Small","Connected"};
+	static String[] roomType = {"Regular","Double size","Small","Connected","Anime"};
 	
 	static ArrayList<Hotel> selectedHotelList = new ArrayList<Hotel>();
 
