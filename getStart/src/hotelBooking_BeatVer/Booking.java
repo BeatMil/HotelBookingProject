@@ -12,6 +12,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
 
+import TheDefault.StringFormat;
+
 public class Booking 
 {
 	//variables
@@ -91,19 +93,27 @@ public class Booking
 
 	{
 		Scanner console = new Scanner(System.in);
-		int userInput;
+		int userInput = -1;
 		
 		do
 		{
-			userInput = console.nextInt();
-			userInput -= 1;
-			if (userInput >= arraySize)
+			if (console.hasNextInt())
 			{
-				System.out.println("There is no specified hotel.\n"
-								+  "Please try again.");
+				userInput = console.nextInt();
+				userInput -= 1;
+
+				if (userInput >= arraySize || userInput < 0)
+				{
+					System.out.println("There is no specified hotel.\n"
+									+  "Please try again.");
+				}
 			}
-			
-		}while (userInput >= arraySize);
+			else
+			{
+				System.out.println("Please try again using numbers");
+				console.next();
+			}
+		}while (userInput >= arraySize  || userInput < 0);
 		
 		return userInput;
 	}
