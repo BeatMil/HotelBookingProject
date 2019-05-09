@@ -30,6 +30,9 @@ public class Menu
 	static ArrayList<Hotel> selectedHotelList = new ArrayList<Hotel>();
 
 	static Hotel choosenHotel;
+	
+	static int[] amountRoomType = new int[roomType.length];
+	
 	public static void main(String[] args) throws IOException, ParseException 
 	{
 		//initialize variables
@@ -149,7 +152,7 @@ public class Menu
 						  	
 						  	if(user_input_string.contains("1"))
 						  	{
-						  		System.out.println("No break");
+						  		chooseRoom();
 						  	}
 						  	else
 						  	{
@@ -207,11 +210,39 @@ public class Menu
 			}
 		
 		}
+		
 		return user_input;
 	}
-	
-	
 
+	public static int intChecker(int max)
+	{
+		Scanner console = new Scanner(System.in);
+		int userInput = 0;
+		do
+		{
+			if (console.hasNextInt())
+			{
+				userInput = console.nextInt();
+				if (userInput <= 0)
+				{
+					System.out.println("Please specify by postive numbers");
+				}
+				else if (userInput > max)
+				{
+					System.out.println("Too many, please try again.");
+				}
+			}
+			else
+			{
+				System.out.println("Please try again using numbers");
+				console.next();
+			}
+			
+		}while (userInput <= 0 || userInput >= max);
+		System.out.println(String.format("intChecker: %d",	userInput));
+		return userInput;
+	}
+	
 	public static String countrySelecter(String[] country)
 	{
 		//initialize
@@ -235,8 +266,6 @@ public class Menu
 		return country[userInputInt-1];
 	}
 
-	
-	//hopefully delete later
 	static Hotel[] loadHotelObject () throws FileNotFoundException
 	{
 //		String file_name = "C:\\Users\\anuto\\eclipse-workspace\\getStart\\src\\hotelBooking_BeatVer\\Book1.csv";
@@ -259,7 +288,6 @@ public class Menu
 		return hotelList;
 	}
 	
-	
 	static int getAmountOfHotel() throws FileNotFoundException
 	{
 //		String file_name = "C:\\Users\\anuto\\eclipse-workspace\\getStart\\src\\hotelBooking_BeatVer\\Book1.csv";
@@ -278,7 +306,6 @@ public class Menu
         return i;
 	}
 
-	
 	public static Room[] getRandomRoom()
 	{
         int numRoom = (int) (Math.random() * 20 + 1);
@@ -294,9 +321,8 @@ public class Menu
 
 	public static void printRoom()
 	{
-		int[] numRoomType = new int[roomType.length];
-		int key = 0;
 		
+		int key = 0;
 		
 		for (String s : roomType)
 		{
@@ -304,7 +330,7 @@ public class Menu
 			{
 				if (choosenHotel.getRoomList()[i].getType().equalsIgnoreCase(s))
 				{
-					numRoomType[key] += 1;
+					amountRoomType[key] += 1;
 				}
 			}
 			key ++;
@@ -312,13 +338,39 @@ public class Menu
 		
 		for (int i = 0; i < roomType.length; i++)
 		{
-//			System.out.println(roomType[i] + " room: " + numRoomType[i] + " availavble");
-			System.out.println(String.format("|%12s room:  %s available", roomType[i], numRoomType[i]));
+			System.out.println(String.format("|%d. %12s room:  %s available", i+1, roomType[i], amountRoomType[i]));
 		}
-		
-		
-		
 	}
+	
+	public static Room[] chooseRoom()
+	{
+		int roomTypeIndex;
+		int amountRoom;
+		
+		
+		System.out.println("How many room?: ");
+		Room[] chosenRooms = new Room[intChecker(Booking.hotelInfo.getRoomList().length)];
+				
+				
+		System.out.println(String.format("Awating %d rooms", chosenRooms.length));
+		
+		
+		System.out.println(String.format("What type of room?: ", ""));
+		roomTypeIndex = Booking.inputCheckerForArray(roomType.length);
+		System.out.println(String.format("roomTypeIndex: %d", roomTypeIndex));
+		System.out.println(String.format("roomType: %s", roomType[roomTypeIndex]));
+		
+		System.out.println(String.format("How many?: ", ""));
+		amountRoom = intChecker(amountRoomType[roomTypeIndex]);
+
+		System.out.println(String.format("amountRoom: %d", amountRoom));
+		System.out.println(String.format("amountRoomType: %d", amountRoomType[roomTypeIndex]));
+		
+		System.out.println(String.format("You have selected %d %s room ",amountRoom, roomType[roomTypeIndex]));
+		
+		return null;
+	}
+	
 	public static void checkIfNoHotel(ArrayList<Hotel> selectedHotel)
 	{
 		if (selectedHotel.isEmpty())

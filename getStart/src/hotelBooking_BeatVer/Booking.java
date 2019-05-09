@@ -25,6 +25,8 @@ public class Booking
 	static String checkout_date;
 	static int totalPrice;
 	
+	static Room[] roomChosen;
+	
 
 
 	public static void viewBooking(String fileName) throws FileNotFoundException
@@ -33,7 +35,7 @@ public class Booking
 		console.useDelimiter("\n");
 		if (!console.hasNext())
 		{
-			System.out.println("Sorry, there is no data.");
+			System.out.println("Sorry, there is no data.\n");
 		}
 		else 
 		{
@@ -81,7 +83,7 @@ public class Booking
 		return Booking.hotelInfo;
 	}
 	
-	public void chooseRoom()
+	public void chooseRoomMightDeleteLater() //Might delete later
 	{
 		for (Room room : Booking.hotelInfo.getRoomList())
 		{
@@ -104,8 +106,7 @@ public class Booking
 
 				if (userInput >= arraySize || userInput < 0)
 				{
-					System.out.println("There is no specified hotel.\n"
-									+  "Please try again.");
+					System.out.println( "Please try again.");
 				}
 			}
 			else
@@ -113,6 +114,7 @@ public class Booking
 				System.out.println("Please try again using numbers");
 				console.next();
 			}
+			
 		}while (userInput >= arraySize  || userInput < 0);
 		
 		return userInput;
