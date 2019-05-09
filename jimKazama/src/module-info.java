@@ -1,9 +1,0 @@
-/**
- * 
- */
-/**
- * @author Beatdameat
- *
- */
-module jimKazama {
-}
