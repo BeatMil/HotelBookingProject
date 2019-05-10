@@ -33,7 +33,7 @@ public class Room {
 
 	public String toString() 
 	{
-		return "Room\nType: "+type;
+		return "Room Type: "+type;
 	}
 
 }
