@@ -1,0 +1,40 @@
+Name,Country ,Star,Swimming pool,Breakfast,Price,add
+Deco hotel,China,3,no,yes,3000,null
+Radisson hotel,China,4,yes,yes,4000,null
+City Hotel ,China,5,yes,yes,5000,null
+Riverview hotel,China,3,no,yes,3000,null
+Holiday inn,China,5,yes,yes,5000,null
+Sheraton,China,5,yes,yes,5000,null
+Chinese hotel,China,4,no,yes,4000,null
+Shin hotel,China,3,no,no,3000,null
+Sakura hotel,Japan,5,no,no,5000,null
+Morimori hotel,Japan,5,no,no,5000,null
+Senagajima hotel,Japan,4,no,yes,4000,null
+Takara no yado hotel,Japan,4,no,yes,4000,null
+Shinsaibashi hotel,Japan,3,yes,no,3000,null
+Nipponbashi,Japan,3,yes,no,3000,null
+Chika Hotel,Japan,3,no,yes,3000,null
+Candeo Hotel,Japan,4,yes,yes,4000,null
+Ikebukuro hotel,Japan,3,no,yes,3000,null
+fuji hotel,Japan,5,yes,yes,5000,null
+Sea &hotel,Korea,2,yes,no,2000,null
+The white hotel,Korea,2,yes,yes,2000,null
+Kensington Hotel,Korea,1,yes,yes,1000,null
+Ramada hotel,Korea,1,yes,yes,1000,null
+Hotel Gracery,Korea,4,yes,yes,4000,null
+Mercure hotel,korea,4,yes,yes,4000,null
+Jeju hotel,Korea,3,no,yes,3000,null
+Snow hotel,Korea,3,no,yes,3000,null
+Hermit hotel,Korea,4,yes,yes,4000,null
+Lion Hotel,Singapore,2,yes,no,2000,null
+Orchard hotel,Singapore,5,yes,no,5000,null
+Hilton hotel,Singapore,5,yes,yes,5000,null
+Ibis hotel,Singapore,4,yes,yes,4000,null
+Bliss Hotel ,Singapore,3,no,no,3000,null
+Rose Hotel,Singapore,2,no,no,2000,null
+Chick hotel,Singapore,4,no,no,4000,null
+Lion Hotel,Singapore,5,yes,yes,5000,null
+Capsule inc hotel,Singapore,3,no,no,3000,null
+Queen soap hotel,Singapore,4,yes,no,4000,null
+King opera,Singapore,4,no,yes,4000,null
+Aft hotel,Singapore,4,no,yes,4000,null

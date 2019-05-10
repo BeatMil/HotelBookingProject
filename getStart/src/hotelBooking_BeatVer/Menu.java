@@ -21,11 +21,11 @@ public class Menu
 	static String[] condition_num4 = {"1","2","3","4"};
 	
 	//Files location
-	static String fileCSV = "C:\\Users\\anuto\\eclipse-workspace\\getStart\\src\\hotelBooking_BeatVer\\Book1.csv";
-	static String fileTXT = "C:\\Users\\anuto\\Documents\\GitHub\\HotelBookingProject\\getStart\\booking.txt";
+	static String fileCSV = "C:\\Users\\Beatdameat\\Documents\\GitHub\\HotelBookingProject\\getStart\\Book1.csv";
+	static String fileTXT = "C:\\Users\\Beatdameat\\Documents\\GitHub\\HotelBookingProject\\getStart\\booking.txt";
 	
 	//easy if change needed
-	static String[] roomType = {"Regular","Double size","Small","Connected","Anime"};
+	static String[] roomType = {"Regular","Double size","Small","Connected","Anime", "King"};
 	
 	static ArrayList<Hotel> selectedHotelList = new ArrayList<Hotel>();
 
@@ -238,7 +238,7 @@ public class Menu
 				console.next();
 			}
 			
-		}while (userInput <= 0 || userInput >= max);
+		}while (userInput <= 0 || userInput > max);
 		System.out.println(String.format("intChecker: %d",	userInput));
 		return userInput;
 	}

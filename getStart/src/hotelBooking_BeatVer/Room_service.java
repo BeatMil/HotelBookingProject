@@ -5,7 +5,6 @@ import java.util.*;
 
 public class Room_service
 {
-	
 	public static void main(String[] agrs) 
 	{
 		
