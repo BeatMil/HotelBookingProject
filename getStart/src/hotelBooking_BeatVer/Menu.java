@@ -25,7 +25,9 @@ public class Menu
 	static String fileTXT = "C:\\Users\\anuto\\Documents\\GitHub\\HotelBookingProject\\getStart\\booking.txt";
 	
 	//easy if change needed
-	static String[] roomType = {"Regular","Double size","Small","Connected","Anime","King"};
+	static String[] roomType = {"Regular","Double size","Small","Connected"};
+	
+	static double[] roomTypeCost = {1.0, 1.5, 1.0, 1.25};
 	
 	static ArrayList<Hotel> selectedHotelList = new ArrayList<Hotel>();
 
@@ -153,7 +155,7 @@ public class Menu
 						  	
 						  	if(user_input_string.contains("1"))
 						  	{
-						  		chooseRoom();
+						  		printRoom2(chooseRoom());
 						  	}
 						  	else
 						  	{
@@ -170,8 +172,6 @@ public class Menu
 						  	break;
 					}
 				}while (!user_input_string.equalsIgnoreCase("5") && !user_input_string.equalsIgnoreCase("6"));
-				
-	
 			}
 			else if (user_input_string.contentEquals("2"))
 			{
@@ -345,6 +345,37 @@ public class Menu
 		}
 	}
 	
+	public static void printRoom2(Room[] roomList)
+	{
+		int[] roomTypeCount = new int[roomType.length];
+		int key = 0;
+		
+		System.out.println("You have choosen: ");
+		for(String s : roomType)
+		{
+			for(int i = 0; i < roomList.length; i++)
+			{
+				if(roomList[i].getType().equalsIgnoreCase(s))
+				{
+					roomTypeCount[key] += 1;
+				}
+			}
+			key++;
+		}
+		key = 0;
+		for(int num : roomTypeCount)
+		{
+			if(num == 0)
+			{
+				//nothing
+			}
+			else
+			{
+				System.out.println(String.format("%s %12s room", num, roomType[key]));
+				key++;
+			}
+		}
+	}
 	public static Room[] chooseRoom()
 	{
 		int roomTypeIndex;

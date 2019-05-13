@@ -2,8 +2,7 @@ package hotelBooking_BeatVer;
 
 
 public class Room 
-{
-	
+{	
 	String type;
 	
 	
