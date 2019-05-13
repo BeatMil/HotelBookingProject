@@ -1,7 +1,8 @@
 package hotelBooking_BeatVer;
 
 
-public class Room {
+public class Room 
+{
 	
 	String type;
 	
@@ -11,13 +12,12 @@ public class Room {
 	{
 		type = "Default Room";
 	}
+	
 	public Room(String roomType)
 	{
 		this.type = roomType;
 	}
 	
-	
-
 	public String getType() 
 	{
 		return type;
@@ -28,9 +28,6 @@ public class Room {
 		this.type = type;
 	}
 	
-
-
-
 	public String toString() 
 	{
 		return "Room Type: "+type;

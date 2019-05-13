@@ -31,7 +31,7 @@ public class Menu
 
 	static Hotel choosenHotel;
 	
-	static int[] amountRoomType = new int[roomType.length];
+	static int[] amountRoomByType = new int[roomType.length];
 	
 	public static void main(String[] args) throws IOException, ParseException 
 	{
@@ -330,7 +330,7 @@ public class Menu
 			{
 				if (choosenHotel.getRoomList()[i].getType().equalsIgnoreCase(s))
 				{
-					amountRoomType[key] += 1;
+					amountRoomByType[key] += 1;
 				}
 			}
 			key ++;
@@ -341,7 +341,7 @@ public class Menu
 	{
 		for (int i = 0; i < roomType.length; i++)
 		{
-			System.out.println(String.format("|%d. %12s room:  %s available", i+1, roomType[i], amountRoomType[i]));
+			System.out.println(String.format("|%d. %12s room:  %s available", i+1, roomType[i], amountRoomByType[i]));
 		}
 	}
 	
@@ -352,44 +352,72 @@ public class Menu
 		// Dint[] amountRoomType;
 		int key = 0;
 		
-		System.out.println("How many room?: ");
+		System.out.println("How many room?: (Total)");
 		Room[] chosenRooms = new Room[intChecker(Booking.hotelInfo.getRoomList().length)];
-				
-		while (key < chosenRooms.length)
+		
+		if (chosenRooms.length == choosenHotel.getRoomList().length)
 		{
-			System.out.println(String.format("Awating %d rooms", chosenRooms.length - key));
-			
-			
-			System.out.println(String.format("What type of room?: ", ""));
-			roomTypeIndex = Booking.inputCheckerForArray(roomType.length);
-			if (amountRoomType[roomTypeIndex] == 0)
+			for (int i = 0; i < roomType.length; i++)
 			{
-				System.out.println(String.format("There is no %s room available.", roomType[roomTypeIndex]));
-			}
-			else
-			{
-				System.out.println(String.format("How many?: ", ""));
-				amountRoom = intChecker(amountRoomType[roomTypeIndex]);
-				amountRoomType[roomTypeIndex] -= amountRoom;
-				for (int i = 0; i < amountRoom; i++)
+				for (int j = 0; j < amountRoomByType[i]; j++)
 				{
-					chosenRooms[key] = new Room(roomType[roomTypeIndex]);
+					chosenRooms[key] = new Room(roomType[i]);
 					key++;
-					System.out.println("LOOP and KEY " + key);
 				}
-				
-				System.out.println(String.format("%d %s room have been selected.",amountRoom, roomType[roomTypeIndex]));
-				printRoom();
 			}
-			System.out.println(String.format("OUT LOOP KEY: %d", key));
+			System.out.println("All room have been reserved.");			
 		}
+		else
+		{
+			while (key < chosenRooms.length)
+			{
+				System.out.println(String.format("Awating %d rooms", chosenRooms.length - key));
+				
+				
+				System.out.println(String.format("What type of room?: ", ""));
+				roomTypeIndex = Booking.inputCheckerForArray(roomType.length);
+				if (amountRoomByType[roomTypeIndex] == 0)
+				{
+					System.out.println(String.format("There is no %s room available.", roomType[roomTypeIndex]));
+				}
+				else
+				{
+					System.out.println(String.format("How many?: ", ""));
+					if (amountRoomByType[roomTypeIndex] < (chosenRooms.length - key))
+					{
+						amountRoom = intChecker(amountRoomByType[roomTypeIndex]);
+						System.out.println("room < key");
+					}
+					else
+					{
+						amountRoom = intChecker(chosenRooms.length - key);
+						System.out.println("key < room: " + (chosenRooms.length - key));
+						
+					}
+
+					amountRoomByType[roomTypeIndex] -= amountRoom;
+					for (int i = 0; i < amountRoom; i++)
+					{
+						chosenRooms[key] = new Room(roomType[roomTypeIndex]);
+						key++;
+						System.out.println("LOOP and KEY " + key);
+					}
+					
+					System.out.println(String.format("%d %s room have been selected.",amountRoom, roomType[roomTypeIndex]));
+					printRoom();
+				}
+				System.out.println(String.format("OUT LOOP KEY: %d", key));
+			}
+		}
+		
+		
 		System.out.println("chooseRoom Successful");
 		for (Room r:chosenRooms)
 		{
 			System.out.println(r);
 		}
 		
-		return null;
+		return chosenRooms;
 	}
 	
 	public static void checkIfNoHotel(ArrayList<Hotel> selectedHotel)

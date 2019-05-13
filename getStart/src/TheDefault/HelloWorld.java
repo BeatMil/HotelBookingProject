@@ -5,7 +5,7 @@ public class HelloWorld {
 	public static void main(String[] args) 
 	{
 			
-		System.out.println("Hello world" + "  I'm cool as fuck boiys");
+		System.out.println("Hello world" + " Tatsu.b forever");
 		// playing as usual
 		byte age = 20; //byte type of date -128 to 128 only
 		System.out.println(age);
