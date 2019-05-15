@@ -47,7 +47,7 @@ public class Booking
 		}
 	}
 	
-	public static void getCustomerInfo() throws ParseException
+	public static void getCustomerInfo(int[] roomList, double[] roomTypeCost) throws ParseException
 	{
 		Scanner console = new Scanner(System.in);
 		
@@ -58,7 +58,7 @@ public class Booking
 		System.out.println("Check-in date: e.g. dd/mm/yyyy 20/05/2019");
 		checkin_date = validateJavaDate();
 		System.out.println("Check-out date: e.g. dd/mm/yyy 23/05/2019");
-		checkout_date = validateDateDiff(checkin_date);
+		checkout_date = validateDateDiff(checkin_date, roomList, roomTypeCost);
 		
 		//display customer name checkinoutdate
 		System.out.println("Your hotel: " + hotelInfo.getName()+"\n"
@@ -142,8 +142,20 @@ public class Booking
         System.out.println("Writting successful.\n");
 	}
 
-	public static void getTotalPrice(long day)
+	public static void getTotalPrice(long day, int[] roomList, double[] roomTypeCost)
 	{
+		int totalPrice2;
+		for (int i = 0; i<roomList.length; i++)
+		{
+			if(roomList[i] != 0)
+			{
+				totalPrice2 = roomList[i];
+			}
+		}
+		
+		
+		
+		
 		totalPrice = (int) (day * Integer.parseInt(hotelInfo.getPrice()));
 	}
 	
@@ -180,7 +192,7 @@ public class Booking
 		return strDate;
 	}
 	
-	public static String validateDateDiff(String day) throws ParseException
+	public static String validateDateDiff(String day, int[] roomList, double[] roomTypeCost) throws ParseException
 	{
 		int key =1;
 		Scanner console = new Scanner(System.in);
@@ -214,7 +226,7 @@ public class Booking
 			}
 		}
 		long diffDays = d2.getTime() - d1.getTime();
-		getTotalPrice(diffDays / (24 * 60 * 60 * 1000));
+		getTotalPrice(diffDays / (24 * 60 * 60 * 1000), roomList, roomTypeCost);
 		return strDate;
 	}
 	

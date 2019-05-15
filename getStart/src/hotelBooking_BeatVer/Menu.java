@@ -25,9 +25,9 @@ public class Menu
 	static String fileTXT = "C:\\Users\\anuto\\Documents\\GitHub\\HotelBookingProject\\getStart\\booking.txt";
 	
 	//easy if change needed
-	static String[] roomType = {"Regular","Double size","Small","Connected"};
+	static String[] roomType = {"Regular","Double size","Small","Connected", "Dio"};
 	
-	static double[] roomTypeCost = {1.0, 1.5, 1.0, 1.25};
+	static double[] roomTypeCost = {1.0, 1.5, 1.0, 1.25, 2.0};
 	
 	static ArrayList<Hotel> selectedHotelList = new ArrayList<Hotel>();
 
@@ -43,8 +43,11 @@ public class Menu
 		String country;
 		Booking booking = new Booking();
 		
-
-		
+		//defense mechanism for price of each type of room
+		if (roomTypeCost.length != roomType.length)
+		{
+			System.out.println("Debug.Log: roomType and roomTypeCost length is not the same.\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
+		}
 		
 		do //looping menu options
 		{
@@ -155,7 +158,7 @@ public class Menu
 						  	
 						  	if(user_input_string.contains("1"))
 						  	{
-						  		printRoom2(chooseRoom());
+						  		Booking.getCustomerInfo(printRoom2(chooseRoom()), roomTypeCost);
 						  	}
 						  	else
 						  	{
@@ -163,7 +166,7 @@ public class Menu
 						  		break;
 						  	}
 						  	
-						  	Booking.getCustomerInfo();
+						  	
 						  	Booking.writeInfoTofile();
 						  	break;
 						  	
@@ -345,7 +348,7 @@ public class Menu
 		}
 	}
 	
-	public static void printRoom2(Room[] roomList)
+	public static int[] printRoom2(Room[] roomList)
 	{
 		int[] roomTypeCount = new int[roomType.length];
 		int key = 0;
@@ -365,16 +368,13 @@ public class Menu
 		key = 0;
 		for(int num : roomTypeCount)
 		{
-			if(num == 0)
-			{
-				//nothing
-			}
-			else
+			if(num != 0)
 			{
 				System.out.println(String.format("%s %12s room", num, roomType[key]));
 				key++;
 			}
 		}
+		return roomTypeCount;
 	}
 	public static Room[] chooseRoom()
 	{
@@ -409,7 +409,7 @@ public class Menu
 				roomTypeIndex = Booking.inputCheckerForArray(roomType.length);
 				if (amountRoomByType[roomTypeIndex] == 0)
 				{
-					System.out.println(String.format("There is no %s room available.", roomType[roomTypeIndex]));
+					System.out.println(String.format("%s room is not available at this time.", roomType[roomTypeIndex]));
 				}
 				else
 				{
