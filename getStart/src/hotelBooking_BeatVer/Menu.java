@@ -168,13 +168,17 @@ public class Menu
 						  	
 						  	
 						  	Booking.writeInfoTofile();
+						  	user_input_string = "6";
 						  	break;
 						  	
 					  case "6":
 						  	System.out.println("Go back to menu");
 						  	break;
+					
+						  	
 					}
-				}while (!user_input_string.equalsIgnoreCase("5") && !user_input_string.equalsIgnoreCase("6"));
+					System.out.println("Debug.Lod: userInput: "+user_input_string);
+				}while (!user_input_string.equalsIgnoreCase("6"));
 			}
 			else if (user_input_string.contentEquals("2"))
 			{

@@ -144,19 +144,16 @@ public class Booking
 
 	public static void getTotalPrice(long day, int[] roomList, double[] roomTypeCost)
 	{
-		int totalPrice2;
+		double roomPrice = 0;
 		for (int i = 0; i<roomList.length; i++)
 		{
 			if(roomList[i] != 0)
 			{
-				totalPrice2 = roomList[i];
+				roomPrice += roomList[i] * (Integer.parseInt(hotelInfo.getPrice()) * roomTypeCost[i]);
 			}
 		}
 		
-		
-		
-		
-		totalPrice = (int) (day * Integer.parseInt(hotelInfo.getPrice()));
+		totalPrice = (int) (day * roomPrice);
 	}
 	
 	public static String validateJavaDate()
