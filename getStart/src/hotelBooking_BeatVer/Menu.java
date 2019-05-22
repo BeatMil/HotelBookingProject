@@ -27,7 +27,7 @@ public class Menu
 	//easy if change needed
 	static String[] roomType = {"Regular","Double size","Small","Connected", "Dio"};
 	
-	static double[] roomTypeCost = {1.0, 1.5, 1.0, 1.25, 2.0};
+	static double[] roomTypeCost = {1.0, 1.5, 1.0, 1.25, 2.0}; //comment here
 	
 	static ArrayList<Hotel> selectedHotelList = new ArrayList<Hotel>();
 
@@ -177,7 +177,6 @@ public class Menu
 					
 						  	
 					}
-					System.out.println("Debug.Lod: userInput: "+user_input_string);
 				}while (!user_input_string.equalsIgnoreCase("6"));
 			}
 			else if (user_input_string.contentEquals("2"))
@@ -327,7 +326,7 @@ public class Menu
         return roomList;
 	}
 
-	public static void loadRoom()
+	public static void loadRoom() //count each type of room to static array amountByType
 	{
 		int key = 0;
 		
@@ -420,14 +419,10 @@ public class Menu
 					System.out.println(String.format("How many?: ", ""));
 					if (amountRoomByType[roomTypeIndex] < (chosenRooms.length - key))
 					{
-						amountRoom = intChecker(amountRoomByType[roomTypeIndex]);
-						System.out.println("room < key");
-					}
+						amountRoom = intChecker(amountRoomByType[roomTypeIndex]);					}
 					else
 					{
 						amountRoom = intChecker(chosenRooms.length - key);
-						System.out.println("key < room: " + (chosenRooms.length - key));
-						
 					}
 
 					amountRoomByType[roomTypeIndex] -= amountRoom;
@@ -435,23 +430,14 @@ public class Menu
 					{
 						chosenRooms[key] = new Room(roomType[roomTypeIndex]);
 						key++;
-						System.out.println("LOOP and KEY " + key);
 					}
 					
 					System.out.println(String.format("%d %s room have been selected.",amountRoom, roomType[roomTypeIndex]));
 					printRoom();
 				}
-				System.out.println(String.format("OUT LOOP KEY: %d", key));
 			}
 		}
-		
-		
 		System.out.println("chooseRoom Successful");
-		for (Room r:chosenRooms)
-		{
-			System.out.println(r);
-		}
-		
 		return chosenRooms;
 	}
 	
