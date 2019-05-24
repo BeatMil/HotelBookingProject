@@ -35,12 +35,14 @@ public class Menu
 	
 	static int[] amountRoomByType = new int[roomType.length];
 	
+	static String country;
+	
 	public static void main(String[] args) throws IOException, ParseException 
 	{
 		//initialize variables
 		Hotel[] hotelList = loadHotelObject();
 		String user_input_string;
-		String country;
+
 		Booking booking = new Booking();
 		
 		//defense mechanism for price of each type of room
@@ -81,65 +83,19 @@ public class Menu
 					{
 					  
 					  case "1":
-							System.out.println("Please specify hotel rating e.g. 1-5:");
-							String star = inputChecker(condition_num);
-							selectedHotelList.clear();
-							for (Hotel hotel : hotelList)
-							{
-								if (hotel.getCountry().equalsIgnoreCase(country) && hotel.getStar().equalsIgnoreCase(star))
-								{
-								 	System.out.println(hotel);
-									selectedHotelList.add((Hotel) hotel);
-								}
-							}
-							checkIfNoHotel(selectedHotelList);
+							hotelFilterStar(hotelList);
 							break;
 							
 					  case "2":
-							System.out.println("Please specify free breakfast e.g. yes,no");
-							String breakfast = inputChecker(condition_yn);
-							selectedHotelList.clear();
-							for (Hotel hotel : hotelList)
-							{
-								if (hotel.getCountry().equalsIgnoreCase(country) && hotel.getBreakfast().equalsIgnoreCase(breakfast))
-								{
-									System.out.println(hotel);
-									selectedHotelList.add((Hotel) hotel);
-								}
-							}
-							checkIfNoHotel(selectedHotelList);
+							hotelFilterBreakfast(hotelList);
 						  	break;
 						  	
 					  case "3":
-							System.out.println("Please specify swimming pool e.g. yes, no");
-							String pool = inputChecker(condition_yn);
-							selectedHotelList.clear();
-							for (Hotel hotel : hotelList)
-							{
-								if (hotel.getCountry().equalsIgnoreCase(country) && hotel.getPool().equalsIgnoreCase(pool))
-								{
-									System.out.println(hotel);
-									selectedHotelList.add((Hotel) hotel);
-								}
-							}
-							checkIfNoHotel(selectedHotelList);
+							hotelFilterPool(hotelList);
 						  	break;
 					
 					  case "4":
-						  	System.out.println("Please specify hotel rating, swimming pool and free breakfast e.g. 5 *enter* yes *enter* no *enter*");
-							star = inputChecker(condition_num);
-							pool = inputChecker(condition_yn);
-							breakfast = inputChecker(condition_yn);
-						  	selectedHotelList.clear();
-							for (Hotel hotel : hotelList)
-							{
-								if (hotel.getCountry().equalsIgnoreCase(country) && hotel.getStar().equalsIgnoreCase(star) && hotel.getPool().equalsIgnoreCase(pool) && hotel.getBreakfast().equalsIgnoreCase(breakfast))
-								{
-									System.out.println(hotel);
-									selectedHotelList.add((Hotel) hotel);
-								}
-							}
-							checkIfNoHotel(selectedHotelList);
+						  	hotelFilterAll(hotelList);
 						  	break;
 						  	
 					  case "5":
@@ -150,7 +106,6 @@ public class Menu
 						  	}
 						  	
 						  	choosenHotel = booking.chooseHotel(selectedHotelList); 
-//						  	booking.chooseRoom();
 						  	loadRoom();
 						  	printRoom();
 						  	System.out.println("1. Choose room\n2. Go back");
@@ -273,6 +228,73 @@ public class Menu
 		return country[userInputInt-1];
 	}
 
+	public static void hotelFilterStar(Hotel[] hotelList)
+	{
+		System.out.println("Please specify hotel rating e.g. 1-5:");
+		String star = inputChecker(condition_num);
+		selectedHotelList.clear();
+		for (Hotel hotel : hotelList)
+		{
+			if (hotel.getCountry().equalsIgnoreCase(country) && hotel.getStar().equalsIgnoreCase(star))
+			{
+			 	System.out.println(hotel);
+				selectedHotelList.add((Hotel) hotel);
+			}
+		}
+		checkIfNoHotel(selectedHotelList);
+	}
+	
+	public static void hotelFilterBreakfast(Hotel[] hotelList)
+	{
+		System.out.println("Please specify free breakfast e.g. yes,no");
+		String breakfast = inputChecker(condition_yn);
+		selectedHotelList.clear();
+		for (Hotel hotel : hotelList)
+		{
+			if (hotel.getCountry().equalsIgnoreCase(country) && hotel.getBreakfast().equalsIgnoreCase(breakfast))
+			{
+				System.out.println(hotel);
+				selectedHotelList.add((Hotel) hotel);
+			}
+		}
+		checkIfNoHotel(selectedHotelList);
+	}
+	
+	public static void hotelFilterPool(Hotel[] hotelList)
+	{
+	  	System.out.println("Please specify hotel rating, swimming pool and free breakfast e.g. 5 *enter* yes *enter* no *enter*");
+		String pool = inputChecker(condition_yn);
+		
+	  	selectedHotelList.clear();
+		for (Hotel hotel : hotelList)
+		{
+			if (hotel.getCountry().equalsIgnoreCase(country) && hotel.getPool().equalsIgnoreCase(pool))
+			{
+				System.out.println(hotel);
+				selectedHotelList.add((Hotel) hotel);
+			}
+		}
+		checkIfNoHotel(selectedHotelList);
+	}
+	
+	public static void hotelFilterAll(Hotel[] hotelList)
+	{
+		System.out.println("Please specify hotel rating, swimming pool and free breakfast e.g. 5 *enter* yes *enter* no *enter*");
+		String star = inputChecker(condition_num);
+		String pool = inputChecker(condition_yn);
+		String breakfast = inputChecker(condition_yn);
+	  	selectedHotelList.clear();
+		for (Hotel hotel : hotelList)
+		{
+			if (hotel.getCountry().equalsIgnoreCase(country) && hotel.getStar().equalsIgnoreCase(star) && hotel.getPool().equalsIgnoreCase(pool) && hotel.getBreakfast().equalsIgnoreCase(breakfast))
+			{
+				System.out.println(hotel);
+				selectedHotelList.add((Hotel) hotel);
+			}
+		}
+		checkIfNoHotel(selectedHotelList);
+	}
+	
 	static Hotel[] loadHotelObject () throws FileNotFoundException
 	{
 //		String file_name = "C:\\Users\\anuto\\eclipse-workspace\\getStart\\src\\hotelBooking_BeatVer\\Book1.csv";
