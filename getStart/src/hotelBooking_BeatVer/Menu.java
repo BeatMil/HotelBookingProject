@@ -27,7 +27,7 @@ public class Menu
 	//easy if change needed
 	static String[] roomType = {"Regular","Double size","Small","Connected", "Dio"};
 	
-	static double[] roomTypeCost = {1.0, 1.5, 1.0, 1.25, 2.0}; //comment here
+	static double[] roomTypeCost = {1.0, 1.5, 1.0, 1.25, 2.0}; //rate of room 
 	
 	static ArrayList<Hotel> selectedHotelList = new ArrayList<Hotel>();
 
@@ -401,6 +401,7 @@ public class Menu
 		}
 		return roomTypeCount;
 	}
+	
 	public static Room[] chooseRoom()
 	{
 		int roomTypeIndex;
