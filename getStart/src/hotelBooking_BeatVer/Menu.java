@@ -8,7 +8,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 
-
+/**
+ * 
+ * @author Beatdameat
+ * @class 
+ */
 public class Menu 
 {
 	//user choices for inputChecker
@@ -36,7 +40,12 @@ public class Menu
 	static int[] amountRoomByType = new int[roomType.length];
 	
 	static String country;
-	
+	/**
+	 * 
+	 * @param args
+	 * @throws IOException
+	 * @throws ParseException
+	 */
 	public static void main(String[] args) throws IOException, ParseException 
 	{
 		//initialize variables
@@ -49,6 +58,7 @@ public class Menu
 		if (roomTypeCost.length != roomType.length)
 		{
 			System.out.println("Debug.Log: roomType and roomTypeCost length is not the same.\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
+			System.out.println("Do not continue.");
 		}
 		
 		do //looping menu options
@@ -113,7 +123,7 @@ public class Menu
 						  	
 						  	if(user_input_string.contains("1"))
 						  	{
-						  		Booking.getCustomerInfo(printRoom2(chooseRoom()), roomTypeCost);
+						  		Booking.getCustomerInfo(printRoomFinal(chooseRoom()), roomTypeCost);
 						  	}
 						  	else
 						  	{
@@ -147,7 +157,8 @@ public class Menu
 	
 	
 	
-	//method of validating user input
+	//method of validating user input 
+	//This function would let user input again until it satisfy the condition
 	public static String inputChecker(String[] condition)
 	{
 		String user_input = null;
@@ -176,6 +187,13 @@ public class Menu
 		return user_input;
 	}
 
+	//function that validating user input for number
+	//This function would let user input again until it satisfy the condition
+	/**
+	 * 
+	 * @param max
+	 * @return
+	 */
 	public static int intChecker(int max)
 	{
 		Scanner console = new Scanner(System.in);
@@ -205,13 +223,11 @@ public class Menu
 		return userInput;
 	}
 	
+	//Let user select country
 	public static String countrySelecter(String[] country)
 	{
-		//initialize
-//		Scanner console = new Scanner(System.in);
 		int userInputInt;
-
-		
+	
 		
 		System.out.println("Listing country...");
 		for (int i = 0; i<country.length; i++)
@@ -219,15 +235,18 @@ public class Menu
 			System.out.println(i+1+". " + country[i].substring(0, 1).toUpperCase() + country[i].substring(1)); //capitalize first letter with numbers
 		}
 		
-		
-		
 		System.out.println("Please select a country by numbers e.g. 1 or 2");
 		userInputInt = Integer.parseInt((inputChecker(condition_num4)));
 		System.out.println(country[userInputInt-1].substring(0, 1).toUpperCase() + country[userInputInt-1].substring(1)+" has been selected.\n");
 
 		return country[userInputInt-1];
 	}
-
+	
+	/**
+	 * This is 
+	 * @param {hotelList} : 
+	 */
+	
 	public static void hotelFilterStar(Hotel[] hotelList)
 	{
 		System.out.println("Please specify hotel rating e.g. 1-5:");
@@ -243,7 +262,10 @@ public class Menu
 		}
 		checkIfNoHotel(selectedHotelList);
 	}
-	
+	/**
+	 *
+	 * @param hotelList 
+	 */
 	public static void hotelFilterBreakfast(Hotel[] hotelList)
 	{
 		System.out.println("Please specify free breakfast e.g. yes,no");
@@ -259,7 +281,10 @@ public class Menu
 		}
 		checkIfNoHotel(selectedHotelList);
 	}
-	
+	/**
+	 * 
+	 * @param hotelList
+	 */
 	public static void hotelFilterPool(Hotel[] hotelList)
 	{
 	  	System.out.println("Please specify hotel rating, swimming pool and free breakfast e.g. 5 *enter* yes *enter* no *enter*");
@@ -373,7 +398,7 @@ public class Menu
 		}
 	}
 	
-	public static int[] printRoom2(Room[] roomList)
+	public static int[] printRoomFinal(Room[] roomList)
 	{
 		int[] roomTypeCount = new int[roomType.length];
 		int key = 0;
