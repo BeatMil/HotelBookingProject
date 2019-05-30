@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 
 /**
- * 
+ * Menu class basically main class but menu sound a bit more legit so.
  * @author Beatdameat
  * @class 
  */
@@ -41,7 +41,7 @@ public class Menu
 	
 	static String country;
 	/**
-	 * 
+	 * main function program flow runs in here
 	 * @param args
 	 * @throws IOException
 	 * @throws ParseException
@@ -157,8 +157,11 @@ public class Menu
 	
 	
 	
-	//method of validating user input 
-	//This function would let user input again until it satisfy the condition
+	/**
+	 * This function let user input until it satisfy the condition
+	 * @param condition String[] consist of condition that user need to input
+	 * @return user input that satisfy the condition
+	 */
 	public static String inputChecker(String[] condition)
 	{
 		String user_input = null;
@@ -187,12 +190,11 @@ public class Menu
 		return user_input;
 	}
 
-	//function that validating user input for number
-	//This function would let user input again until it satisfy the condition
 	/**
-	 * 
-	 * @param max
-	 * @return
+	 * This function let user input until it satisfy the condition but number instead
+	 * This would check for numerical input if input is not a number user can try again as many times as user want
+	 * @param max the maximum number that user can get
+	 * @return number that user input
 	 */
 	public static int intChecker(int max)
 	{
@@ -223,14 +225,18 @@ public class Menu
 		return userInput;
 	}
 	
-	//Let user select country
+	/**
+	 * Let user select country 
+	 * @param country this parameter is a static String[] that contain 
+	 * @return
+	 */
 	public static String countrySelecter(String[] country)
 	{
 		int userInputInt;
 	
 		
 		System.out.println("Listing country...");
-		for (int i = 0; i<country.length; i++)
+		for (int i = 0; i<country.length; i++) //printing list of countries
 		{
 			System.out.println(i+1+". " + country[i].substring(0, 1).toUpperCase() + country[i].substring(1)); //capitalize first letter with numbers
 		}
