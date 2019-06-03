@@ -1,12 +1,11 @@
 package hotelBooking_BeatVer;
 
-
+//I did all the code. Certain guy tries hard to help me but fail. Well, at least he manage to created this Room class
+//Coding in real fun so I don't really mad at him.
 public class Room 
 {	
 	String type;
 	
-	
-
 	public Room() 
 	{
 		type = "Default Room";

@@ -28,7 +28,7 @@ public class Menu
 	static String fileCSV = "C:\\Users\\anuto\\Documents\\GitHub\\HotelBookingProject\\getStart\\Book1.csv";
 	static String fileTXT = "C:\\Users\\anuto\\Documents\\GitHub\\HotelBookingProject\\getStart\\booking.txt";
 	
-	//easy if change needed
+	//Config each type of room and cost
 	static String[] roomType = {"Regular","Double size","Small","Connected", "Dio"};
 	
 	static double[] roomTypeCost = {1.0, 1.5, 1.0, 1.25, 2.0}; //rate of room 
@@ -228,7 +228,7 @@ public class Menu
 	/**
 	 * Let user select country 
 	 * @param country this parameter is a static String[] that contain 
-	 * @return
+	 * @return country that user selected
 	 */
 	public static String countrySelecter(String[] country)
 	{
@@ -249,10 +249,9 @@ public class Menu
 	}
 	
 	/**
-	 * This is 
-	 * @param {hotelList} : 
+	 * Show hotel with specific star 
+	 * @param {hotelList} : list of hotel in the selected country
 	 */
-	
 	public static void hotelFilterStar(Hotel[] hotelList)
 	{
 		System.out.println("Please specify hotel rating e.g. 1-5:");
@@ -268,9 +267,10 @@ public class Menu
 		}
 		checkIfNoHotel(selectedHotelList);
 	}
+	
 	/**
-	 *
-	 * @param hotelList 
+	 * show hotel with free breakfast (or no free breakfast)
+	 * @param hotelList list of hotel in the selected country
 	 */
 	public static void hotelFilterBreakfast(Hotel[] hotelList)
 	{
@@ -287,9 +287,10 @@ public class Menu
 		}
 		checkIfNoHotel(selectedHotelList);
 	}
+	
 	/**
-	 * 
-	 * @param hotelList
+	 * show hotel with swimming pool (or not)
+	 * @param hotelList list of hotel in the selected country
 	 */
 	public static void hotelFilterPool(Hotel[] hotelList)
 	{
@@ -307,7 +308,10 @@ public class Menu
 		}
 		checkIfNoHotel(selectedHotelList);
 	}
-	
+	/**
+	 * show hotel with all filter (very confusing to use)
+	 * @param hotelList List of hotel in the selected country
+	 */
 	public static void hotelFilterAll(Hotel[] hotelList)
 	{
 		System.out.println("Please specify hotel rating, swimming pool and free breakfast e.g. 5 *enter* yes *enter* no *enter*");
@@ -326,11 +330,14 @@ public class Menu
 		checkIfNoHotel(selectedHotelList);
 	}
 	
+	/**
+	 * load list of hotels from csv file into an array of hotel object and also generate random rooms here
+	 * @return array of hotels (all hotel available in csv file)
+	 * @throws FileNotFoundException
+	 */
 	static Hotel[] loadHotelObject () throws FileNotFoundException
 	{
-//		String file_name = "C:\\Users\\anuto\\eclipse-workspace\\getStart\\src\\hotelBooking_BeatVer\\Book1.csv";
 		String hotelInfo;
-//		Residence[] hotelList = new Residence[getAmountOfHotel()];
 		Hotel[] hotelList = new Hotel[getAmountOfHotel()];
 		Scanner scanner = new Scanner(new File(fileCSV));
 		int count = 0;
@@ -348,6 +355,11 @@ public class Menu
 		return hotelList;
 	}
 	
+	/**
+	 * count the amount of hotel is csv file
+	 * @return
+	 * @throws FileNotFoundException
+	 */
 	static int getAmountOfHotel() throws FileNotFoundException
 	{
 //		String file_name = "C:\\Users\\anuto\\eclipse-workspace\\getStart\\src\\hotelBooking_BeatVer\\Book1.csv";
@@ -359,13 +371,17 @@ public class Menu
         {   
         	scanner.next();
         	i++;
-        	
         }
         scanner.close();
         
         return i;
 	}
 
+	/**
+	 * Generate random amount and type of room. In this case I decided 20 rooms is enough.
+	 * This function is being used when loading hotel since room are being randomly generated not from reading csv file
+	 * @return array of room 
+	 */
 	public static Room[] getRandomRoom()
 	{
         int numRoom = (int) (Math.random() * 20 + 1);
@@ -379,6 +395,9 @@ public class Menu
         return roomList;
 	}
 
+	/**
+	 * Count each type of room available in the hotel
+	 */
 	public static void loadRoom() //count each type of room to static array amountByType
 	{
 		int key = 0;
@@ -396,6 +415,9 @@ public class Menu
 		}
 	}
 	
+	/**
+	 * Print rooms that are available in the hotel. (in a nice clean way)
+	 */
 	public static void printRoom()
 	{
 		for (int i = 0; i < roomType.length; i++)
@@ -404,6 +426,11 @@ public class Menu
 		}
 	}
 	
+	/**
+	 * Print rooms that user has chosen 
+	 * @param roomList rooms that user has chosen
+	 * @return amount of each room that user has chosen
+	 */
 	public static int[] printRoomFinal(Room[] roomList)
 	{
 		int[] roomTypeCount = new int[roomType.length];
@@ -429,15 +456,23 @@ public class Menu
 				System.out.println(String.format("%s %12s room", num, roomType[key]));
 				key++;
 			}
+			else
+			{
+				key++;
+			}
 		}
 		return roomTypeCount;
 	}
 	
+	/**
+	 * This function took me around whole 2 day to figure this out and there are still some bugs
+	 * This function let user choose any rooms user want. User can choose many type of room with specific amount which really test my coding skill. 
+	 * @return Room object in array that user has chosen
+	 */
 	public static Room[] chooseRoom()
 	{
 		int roomTypeIndex;
 		int amountRoom;
-		// Dint[] amountRoomType;
 		int key = 0;
 		
 		System.out.println("How many room?: (Total)");
@@ -454,6 +489,22 @@ public class Menu
 				}
 			}
 			System.out.println("All room have been reserved.");			
+		}
+		else if (chosenRooms.length == 1)
+		{
+			System.out.println(String.format("Awating %d rooms (choose one room)", 1));
+			System.out.println(String.format("What type of room?: ", ""));
+			roomTypeIndex = Booking.inputCheckerForArray(roomType.length);
+			System.out.println(roomTypeIndex);
+			if (amountRoomByType[roomTypeIndex] == 0)
+			{
+				System.out.println(String.format("%s room is not available at this time.", roomType[roomTypeIndex]));
+			}
+			else
+			{
+				chosenRooms[key] = new Room(roomType[roomTypeIndex]);
+			}
+			
 		}
 		else
 		{
@@ -473,7 +524,8 @@ public class Menu
 					System.out.println(String.format("How many?: ", ""));
 					if (amountRoomByType[roomTypeIndex] < (chosenRooms.length - key))
 					{
-						amountRoom = intChecker(amountRoomByType[roomTypeIndex]);					}
+						amountRoom = intChecker(amountRoomByType[roomTypeIndex]);					
+					}
 					else
 					{
 						amountRoom = intChecker(chosenRooms.length - key);
@@ -494,12 +546,15 @@ public class Menu
 		System.out.println("chooseRoom Successful");
 		return chosenRooms;
 	}
-	
+	/**
+	 * Mainly uses in filter function. There maybe no hotel available with for example 1 star hotel. This function would print that there are no specified hotel.
+	 * @param selectedHotel
+	 */
 	public static void checkIfNoHotel(ArrayList<Hotel> selectedHotel)
 	{
 		if (selectedHotel.isEmpty())
 		{
-			System.out.println("Sorry, there are no specify hotel available.");
+			System.out.println("Sorry, there are no specified hotel available.");
 		}
 	}
 	

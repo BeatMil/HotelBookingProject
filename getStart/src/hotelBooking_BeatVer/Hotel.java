@@ -2,9 +2,6 @@ package hotelBooking_BeatVer;
 
 public class Hotel
 {
-
-//	static ArrayList<Hotel> selectedHotel = new ArrayList<Hotel>();
-//	Residence[] hotelList;
 	private String name;
 	private String country;
 	private String star;

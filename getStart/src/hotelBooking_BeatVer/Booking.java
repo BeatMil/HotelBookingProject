@@ -28,7 +28,11 @@ public class Booking
 	static Room[] roomChosen;
 	
 
-
+	/**
+	 * Read csv file that contain customer's booking
+	 * @param fileName Location of customer's booking file
+	 * @throws FileNotFoundException
+	 */
 	public static void viewBooking(String fileName) throws FileNotFoundException
 	{
 		Scanner console = new Scanner(new File(fileName));
@@ -47,6 +51,12 @@ public class Booking
 		}
 	}
 	
+	/**
+	 * Let user fill their information such as name and date of arrival
+	 * @param roomList List of room that customer has chosen
+	 * @param roomTypeCost cost of room as rating to calculate total price
+	 * @throws ParseException
+	 */
 	public static void getCustomerInfo(int[] roomList, double[] roomTypeCost) throws ParseException
 	{
 		Scanner console = new Scanner(System.in);
@@ -68,6 +78,11 @@ public class Booking
 						+  "Total price   : "+totalPrice+" bath\n");
 	}
 	
+	/**
+	 * Let user select their hotel from list that has been sorted or not
+	 * @param hotelList list of hotel that has been sorted or not
+	 * @return hotel that user has chosen
+	 */
 	public Hotel chooseHotel(ArrayList<Hotel> hotelList)
 	{
 		System.out.println("Please select hotels by numbers");
@@ -83,14 +98,11 @@ public class Booking
 		return Booking.hotelInfo;
 	}
 	
-	public void chooseRoomMightDeleteLater() //Might delete later
-	{
-		for (Room room : Booking.hotelInfo.getRoomList())
-		{
-			System.out.println(room);
-		}
-	}
-	
+	/**
+	 * Validating input make it in range of array index
+	 * @param arraySize length of the array
+	 * @return array index
+	 */
  	public static int inputCheckerForArray(int arraySize)
 
 	{
@@ -120,6 +132,10 @@ public class Booking
 		return userInput;
 	}
 	
+ 	/**
+ 	 * write all customer info to file
+ 	 * @throws IOException
+ 	 */
 	public static void writeInfoTofile() throws IOException
 	{
 		FileWriter fstream = new FileWriter("booking.txt",true);
@@ -142,6 +158,12 @@ public class Booking
         System.out.println("Writting successful.\n");
 	}
 
+	/**
+	 * calculate total price
+	 * @param day amount of day that customer spend a night on a hotel
+	 * @param roomList list of room that customer has chosen
+	 * @param roomTypeCost cost of each type of room (rating)
+	 */
 	public static void getTotalPrice(long day, int[] roomList, double[] roomTypeCost)
 	{
 		double roomPrice = 0;
@@ -156,6 +178,10 @@ public class Booking
 		totalPrice = (int) (day * roomPrice);
 	}
 	
+	/**
+	 * validate the check-in date. The date cannot be in the past.
+	 * @return check-in date as a string
+	 */
 	public static String validateJavaDate()
 	{
 		int key=1;
@@ -189,6 +215,14 @@ public class Booking
 		return strDate;
 	}
 	
+	/**
+	 * find difference of two dates which are check-in date and check-out date (here is where everything start to mess up)
+	 * @param day check - in date
+	 * @param roomList list of room that customer has chosen
+	 * @param roomTypeCost price of each type of room (rating)
+	 * @return days that customer stay in hotel
+	 * @throws ParseException
+	 */
 	public static String validateDateDiff(String day, int[] roomList, double[] roomTypeCost) throws ParseException
 	{
 		int key =1;
